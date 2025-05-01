@@ -4,7 +4,7 @@ import { Episode } from '../entities/episode.entity';
 import { DbConnection } from '../enums/dbConnection.enum';
 import { Model } from 'mongoose';
 import { CreateEpisodeDto } from '../modules/episodes/dtos/createEpisode.dto';
-import { ReplaceEpisodeDto } from '../modules/episodes/dtos/replaceEpisode.dto';
+import { ReplaceOneEpisodeDto } from '../modules/episodes/dtos/replaceOneEpisode.dto';
 import { PaginationQueryDto } from '../dtos/pagination.query.dto';
 
 @Injectable()
@@ -26,7 +26,7 @@ export class EpisodeRepository {
     return this.episodeModel.create(createEpisodeDto);
   }
 
-  replaceOne(replaceEpisodeDto: ReplaceEpisodeDto) {
-    return this.episodeModel.replaceOne({ _id: replaceEpisodeDto.id }, replaceEpisodeDto);
+  replaceOne(replaceOneEpisodeDto: ReplaceOneEpisodeDto) {
+    return this.episodeModel.replaceOne({ _id: replaceOneEpisodeDto.id }, replaceOneEpisodeDto);
   }
 }

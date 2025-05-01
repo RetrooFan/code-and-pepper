@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post, Put, Query } from '@nestjs/common';
 import { EpisodesService } from './episodes.service';
 import { CreateEpisodeDto } from './dtos/createEpisode.dto';
-import { ReplaceEpisodeDto } from './dtos/replaceEpisode.dto';
+import { ReplaceOneEpisodeDto } from './dtos/replaceOneEpisode.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 
 @Controller('episodes')
@@ -19,7 +19,7 @@ export class EpisodesController {
   }
 
   @Put()
-  replaceOne(@Body() replaceEpisodeDto: ReplaceEpisodeDto) {
-    return this.episodesService.replaceOne(replaceEpisodeDto);
+  replaceOne(@Body() replaceOneEpisodeDto: ReplaceOneEpisodeDto) {
+    return this.episodesService.replaceOne(replaceOneEpisodeDto);
   }
 }

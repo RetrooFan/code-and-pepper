@@ -4,6 +4,7 @@ import { EpisodesService } from './episodes.service';
 import { CreateEpisodeDto } from './dtos/createEpisode.dto';
 import { UpdateOneEpisodeDto } from './dtos/updateOneEpisode.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
+import { IdDto } from '../../dtos/id.dto';
 
 @Controller('episodes')
 export class EpisodesController {
@@ -20,8 +21,8 @@ export class EpisodesController {
   }
 
   @Put()
-  updateOne(@Body() updateOneEpisodeDto: UpdateOneEpisodeDto) {
-    return this.episodesService.updateOne(updateOneEpisodeDto);
+  updateOne(@Param() idDto: IdDto, @Body() updateOneEpisodeDto: UpdateOneEpisodeDto) {
+    return this.episodesService.updateOne(idDto, updateOneEpisodeDto);
   }
 
   @Delete(':id')

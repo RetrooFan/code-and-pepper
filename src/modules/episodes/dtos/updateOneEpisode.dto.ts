@@ -1,8 +1,3 @@
-import { IsString } from 'class-validator';
+import { CreateEpisodeDto } from './createEpisode.dto';
 
-import { IdDto } from '../../../dtos/id.dto';
-
-export class UpdateOneEpisodeDto extends IdDto {
-  @IsString()
-  name: string;
-}
+export class UpdateOneEpisodeDto extends CreateEpisodeDto {}

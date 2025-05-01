@@ -7,6 +7,7 @@ import { DbConnection } from '../enums/dbConnection.enum';
 import { CreateEpisodeDto } from '../modules/episodes/dtos/createEpisode.dto';
 import { UpdateOneEpisodeDto } from '../modules/episodes/dtos/updateOneEpisode.dto';
 import { PaginationQueryDto } from '../dtos/pagination.query.dto';
+import { IdDto } from '../dtos/id.dto';
 
 @Injectable()
 export class EpisodesRepository {
@@ -27,8 +28,8 @@ export class EpisodesRepository {
     return this.episodeModel.create(createEpisodeDto);
   }
 
-  updateOne(updateOneEpisodeDto: UpdateOneEpisodeDto) {
-    return this.episodeModel.updateOne({ _id: updateOneEpisodeDto.id }, updateOneEpisodeDto);
+  updateOne(idDto: IdDto, updateOneEpisodeDto: UpdateOneEpisodeDto) {
+    return this.episodeModel.updateOne({ _id: idDto.id }, updateOneEpisodeDto);
   }
 
   deleteOne(idDto: IdDto) {

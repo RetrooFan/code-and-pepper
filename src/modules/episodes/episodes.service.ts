@@ -9,7 +9,7 @@ export class EpisodesService {
     return this.episodeRepository.findAll();
   }
 
-  create(body) {
+  create(body: any) {
     return this.episodeRepository.create(body);
   }
 }

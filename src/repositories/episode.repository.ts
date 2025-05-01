@@ -15,7 +15,7 @@ export class EpisodeRepository {
     return this.episodeModel.find<Episode>();
   }
 
-  create(body) {
+  create(body: any) {
     return this.episodeModel.create(body);
   }
 }

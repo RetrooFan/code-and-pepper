@@ -12,7 +12,7 @@ export class EpisodeRepository {
   ) {}
 
   findAll() {
-    return this.episodeModel.find<Episode>().skip(0).limit(10);
+    return this.episodeModel.find<Episode>().sort({ createdAt: 1 }).skip(0).limit(10);
   }
 
   create(body: any) {

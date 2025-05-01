@@ -5,7 +5,7 @@ import { Model } from 'mongoose';
 import { Planet } from '../entities/planet.entity';
 import { DbConnection } from '../enums/dbConnection.enum';
 import { CreatePlanetDto } from '../modules/planets/dtos/createPlanet.dto';
-import { ReplaceOnePlanetDto } from '../modules/planets/dtos/replaceOnePlanet.dto';
+import { UpdateOnePlanetDto } from '../modules/planets/dtos/updateOnePlanet.dto';
 import { PaginationQueryDto } from '../dtos/pagination.query.dto';
 import { DeleteOnePlanetDto } from '../modules/planets/dtos/deleteOnePlanet.dto';
 
@@ -28,8 +28,8 @@ export class PlanetsRepository {
     return this.planetModel.create(createPlanetDto);
   }
 
-  replaceOne(replaceOnePlanetDto: ReplaceOnePlanetDto) {
-    return this.planetModel.replaceOne({ _id: replaceOnePlanetDto.id }, replaceOnePlanetDto);
+  updateOne(updateOnePlanetDto: UpdateOnePlanetDto) {
+    return this.planetModel.updateOne({ _id: updateOnePlanetDto.id }, updateOnePlanetDto);
   }
 
   deleteOne(deleteOnePlanetDto: DeleteOnePlanetDto) {

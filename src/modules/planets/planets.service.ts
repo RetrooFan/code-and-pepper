@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 import { PlanetsRepository } from '../../repositories/planets.repository';
 import { CreatePlanetDto } from './dtos/createPlanet.dto';
-import { ReplaceOnePlanetDto } from './dtos/replaceOnePlanet.dto';
+import { UpdateOnePlanetDto } from './dtos/updateOnePlanet.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { DeleteOnePlanetDto } from './dtos/deleteOnePlanet.dto';
 
@@ -18,8 +18,8 @@ export class PlanetsService {
     return this.planetsRepository.create(createPlanetDto);
   }
 
-  replaceOne(replaceOnePlanetDto: ReplaceOnePlanetDto) {
-    return this.planetsRepository.replaceOne(replaceOnePlanetDto);
+  updateOne(updateOnePlanetDto: UpdateOnePlanetDto) {
+    return this.planetsRepository.updateOne(updateOnePlanetDto);
   }
 
   deleteOne(deleteOnePlanetDto: DeleteOnePlanetDto) {

@@ -1,8 +1,8 @@
 import { IsOptional } from 'class-validator';
 
-import { ReplaceOnePlanetDto } from './replaceOnePlanet.dto';
+import { UpdateOnePlanetDto } from './updateOnePlanet.dto';
 
-export class CreatePlanetDto extends ReplaceOnePlanetDto {
+export class CreatePlanetDto extends UpdateOnePlanetDto {
   @IsOptional()
   declare id: string;
 }

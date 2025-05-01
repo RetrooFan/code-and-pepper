@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/
 
 import { PlanetsService } from './planets.service';
 import { CreatePlanetDto } from './dtos/createPlanet.dto';
-import { ReplaceOnePlanetDto } from './dtos/replaceOnePlanet.dto';
+import { UpdateOnePlanetDto } from './dtos/updateOnePlanet.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { DeleteOnePlanetDto } from './dtos/deleteOnePlanet.dto';
 
@@ -21,8 +21,8 @@ export class PlanetsController {
   }
 
   @Put()
-  replaceOne(@Body() replaceOnePlanetDto: ReplaceOnePlanetDto) {
-    return this.planetsService.replaceOne(replaceOnePlanetDto);
+  updateOne(@Body() updateOnePlanetDto: UpdateOnePlanetDto) {
+    return this.planetsService.updateOne(updateOnePlanetDto);
   }
 
   @Delete(':id')

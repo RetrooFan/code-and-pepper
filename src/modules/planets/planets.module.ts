@@ -6,7 +6,7 @@ import { PlanetsController } from './planets.controller';
 import { PlanetsService } from './planets.service';
 import { DbConnection } from '../../enums/dbConnection.enum';
 import { Planet, planetSchema } from '../../entities/planet.entity';
-import { PlanetsRepository } from '../../repositories/planets.repository';
+import { PlanetsRepository } from './planets.repository';
 
 @Module({
   imports: [

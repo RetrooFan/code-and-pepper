@@ -20,7 +20,7 @@ export class PlanetsController {
     return this.planetsService.create(createPlanetDto);
   }
 
-  @Put()
+  @Put(':id')
   updateOne(@Param() idDto: IdDto, @Body() updateOnePlanetDto: UpdateOnePlanetDto) {
     return this.planetsService.updateOne(idDto, updateOnePlanetDto);
   }

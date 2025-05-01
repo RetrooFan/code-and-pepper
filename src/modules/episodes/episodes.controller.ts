@@ -20,7 +20,7 @@ export class EpisodesController {
     return this.episodesService.create(createEpisodeDto);
   }
 
-  @Put()
+  @Put(':id')
   updateOne(@Param() idDto: IdDto, @Body() updateOneEpisodeDto: UpdateOneEpisodeDto) {
     return this.episodesService.updateOne(idDto, updateOneEpisodeDto);
   }

@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { EpisodeRepository } from '../../repositories/episode.repository';
+import { CreateEpisodeDto } from './dtos/createEpisode.dto';
 
 @Injectable()
 export class EpisodesService {
@@ -9,7 +10,7 @@ export class EpisodesService {
     return this.episodeRepository.find();
   }
 
-  create(body: any) {
-    return this.episodeRepository.create(body);
+  create(createEpisodeDto: CreateEpisodeDto) {
+    return this.episodeRepository.create(createEpisodeDto);
   }
 }

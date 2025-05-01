@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { EpisodesService } from './episodes.service';
+import { CreateEpisodeDto } from './dtos/createEpisode.dto';
 
 @Controller('episodes')
 export class EpisodesController {
@@ -11,7 +12,7 @@ export class EpisodesController {
   }
 
   @Post()
-  create(@Body() body: any) {
-    return this.episodesService.create(body);
+  create(@Body() createEpisodeDto: CreateEpisodeDto) {
+    return this.episodesService.create(createEpisodeDto);
   }
 }

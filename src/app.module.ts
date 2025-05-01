@@ -5,6 +5,7 @@ import { HelloWorldModule } from './modules/helloWorld/helloWorld.module';
 import configuration from './configuration';
 import { EpisodesModule } from './modules/episodes/episodes.module';
 import { PlanetsModule } from './modules/planets/planets.module';
+import { CharactersModule } from './modules/characters/characters.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { PlanetsModule } from './modules/planets/planets.module';
     HelloWorldModule,
     EpisodesModule,
     PlanetsModule,
+    CharactersModule,
   ],
 })
 export class AppModule {}

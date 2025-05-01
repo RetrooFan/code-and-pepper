@@ -1,29 +1,29 @@
 services:
-  code-and-pepper-node:
-    container_name: code-and-pepper-node
+  code-and-pepper-dev-node:
+    container_name: code-and-pepper-dev-node
     image: node:22-alpine3.21
     working_dir: /app
     tty: true
     ports:
       - 3000:3000
     volumes:
-      - code-and-pepper-node:/app
+      - code-and-pepper-dev-node:/app
       - .:/app
     command: npx nodemon
     depends_on:
-      - code-and-pepper-mongo
+      - code-and-pepper-dev-mongo
 
-  code-and-pepper-mongo:
-    container_name: code-and-pepper-mongo
+  code-and-pepper-dev-mongo:
+    container_name: code-and-pepper-dev-mongo
     image: mongo:8.0.8
     tty: true
     ports:
       - 27017:27017
     volumes:
-      - code-and-pepper-mongo:/data/db
+      - code-and-pepper-dev-mongo:/data/db
 
 volumes:
-  code-and-pepper-node:
-    name: code-and-pepper-node
-  code-and-pepper-mongo:
-    name: code-and-pepper-mongo
+  code-and-pepper-dev-node:
+    name: code-and-pepper-dev-node
+  code-and-pepper-dev-mongo:
+    name: code-and-pepper-dev-mongo

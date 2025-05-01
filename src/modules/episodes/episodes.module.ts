@@ -6,7 +6,7 @@ import { EpisodesController } from './episodes.controller';
 import { EpisodesService } from './episodes.service';
 import { DbConnection } from '../../enums/dbConnection.enum';
 import { Episode, episodeSchema } from '../../entities/episode.entity';
-import { EpisodesRepository } from '../../repositories/episodes.repository';
+import { EpisodesRepository } from './episodes.repository';
 
 @Module({
   imports: [

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 import { EpisodesRepository } from '../../repositories/episodes.repository';
 import { CreateEpisodeDto } from './dtos/createEpisode.dto';
-import { ReplaceOneEpisodeDto } from './dtos/replaceOneEpisode.dto';
+import { UpdateOneEpisodeDto } from './dtos/updateOneEpisode.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { DeleteOneEpisodeDto } from './dtos/deleteOneEpisode.dto';
 
@@ -18,8 +18,8 @@ export class EpisodesService {
     return this.episodesRepository.create(createEpisodeDto);
   }
 
-  replaceOne(replaceOneEpisodeDto: ReplaceOneEpisodeDto) {
-    return this.episodesRepository.replaceOne(replaceOneEpisodeDto);
+  updateOne(updateOneEpisodeDto: UpdateOneEpisodeDto) {
+    return this.episodesRepository.updateOne(updateOneEpisodeDto);
   }
 
   deleteOne(deleteOneEpisodeDto: DeleteOneEpisodeDto) {

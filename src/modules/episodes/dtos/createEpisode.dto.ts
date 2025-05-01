@@ -1,8 +1,8 @@
 import { IsOptional } from 'class-validator';
 
-import { ReplaceOneEpisodeDto } from './replaceOneEpisode.dto';
+import { UpdateOneEpisodeDto } from './updateOneEpisode.dto';
 
-export class CreateEpisodeDto extends ReplaceOneEpisodeDto {
+export class CreateEpisodeDto extends UpdateOneEpisodeDto {
   @IsOptional()
   declare id: string;
 }

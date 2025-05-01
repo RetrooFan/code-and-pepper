@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/
 
 import { EpisodesService } from './episodes.service';
 import { CreateEpisodeDto } from './dtos/createEpisode.dto';
-import { ReplaceOneEpisodeDto } from './dtos/replaceOneEpisode.dto';
+import { UpdateOneEpisodeDto } from './dtos/updateOneEpisode.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { DeleteOneEpisodeDto } from './dtos/deleteOneEpisode.dto';
 
@@ -21,8 +21,8 @@ export class EpisodesController {
   }
 
   @Put()
-  replaceOne(@Body() replaceOneEpisodeDto: ReplaceOneEpisodeDto) {
-    return this.episodesService.replaceOne(replaceOneEpisodeDto);
+  updateOne(@Body() updateOneEpisodeDto: UpdateOneEpisodeDto) {
+    return this.episodesService.updateOne(updateOneEpisodeDto);
   }
 
   @Delete(':id')

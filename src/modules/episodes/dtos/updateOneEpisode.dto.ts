@@ -2,7 +2,7 @@ import { IsString } from 'class-validator';
 
 import { IdDto } from '../../../dtos/id.dto';
 
-export class ReplaceOneEpisodeDto extends IdDto {
+export class UpdateOneEpisodeDto extends IdDto {
   @IsString()
   name: string;
 }

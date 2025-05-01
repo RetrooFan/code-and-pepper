@@ -5,7 +5,7 @@ import { Model } from 'mongoose';
 import { Episode } from '../entities/episode.entity';
 import { DbConnection } from '../enums/dbConnection.enum';
 import { CreateEpisodeDto } from '../modules/episodes/dtos/createEpisode.dto';
-import { ReplaceOneEpisodeDto } from '../modules/episodes/dtos/replaceOneEpisode.dto';
+import { UpdateOneEpisodeDto } from '../modules/episodes/dtos/updateOneEpisode.dto';
 import { PaginationQueryDto } from '../dtos/pagination.query.dto';
 import { DeleteOneEpisodeDto } from '../modules/episodes/dtos/deleteOneEpisode.dto';
 
@@ -28,8 +28,8 @@ export class EpisodesRepository {
     return this.episodeModel.create(createEpisodeDto);
   }
 
-  replaceOne(replaceOneEpisodeDto: ReplaceOneEpisodeDto) {
-    return this.episodeModel.replaceOne({ _id: replaceOneEpisodeDto.id }, replaceOneEpisodeDto);
+  updateOne(updateOneEpisodeDto: UpdateOneEpisodeDto) {
+    return this.episodeModel.updateOne({ _id: updateOneEpisodeDto.id }, updateOneEpisodeDto);
   }
 
   deleteOne(deleteOneEpisodeDto: DeleteOneEpisodeDto) {

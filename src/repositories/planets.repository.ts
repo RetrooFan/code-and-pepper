@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
-import { Planet } from '../entities/planet.entity';
+import { Planet, PlanetDocument } from '../entities/planet.entity';
 import { DbConnection } from '../enums/dbConnection.enum';
 import { CreatePlanetDto } from '../modules/planets/dtos/createPlanet.dto';
 import { UpdateOnePlanetDto } from '../modules/planets/dtos/updateOnePlanet.dto';
@@ -13,7 +13,7 @@ import { IdDto } from '../dtos/id.dto';
 export class PlanetsRepository {
   constructor(
     @InjectModel(Planet.name, DbConnection.PLANETS)
-    private readonly planetModel: Model<Planet>,
+    private readonly planetModel: Model<PlanetDocument>,
   ) {}
 
   find(paginationQueryDto: PaginationQueryDto) {

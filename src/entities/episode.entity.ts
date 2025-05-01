@@ -5,9 +5,6 @@ export type EpisodeDocument = Episode & Document;
 
 @Schema({ timestamps: true })
 export class Episode {
-  @Prop({ required: true, alias: 'id' })
-  _id: string;
-
   @Prop({ required: true })
   name: string;
 }

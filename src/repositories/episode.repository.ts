@@ -4,6 +4,7 @@ import { Episode } from '../entities/episode.entity';
 import { DbConnection } from '../enums/dbConnection.enum';
 import { Model } from 'mongoose';
 import { CreateEpisodeDto } from '../modules/episodes/dtos/createEpisode.dto';
+import { ReplaceEpisodeDto } from '../modules/episodes/dtos/replaceEpisode.dto';
 
 @Injectable()
 export class EpisodeRepository {
@@ -18,5 +19,9 @@ export class EpisodeRepository {
 
   create(createEpisodeDto: CreateEpisodeDto) {
     return this.episodeModel.create(createEpisodeDto);
+  }
+
+  replaceOne(replaceEpisodeDto: ReplaceEpisodeDto) {
+    return this.episodeModel.replaceOne({ _id: replaceEpisodeDto.id }, replaceEpisodeDto);
   }
 }

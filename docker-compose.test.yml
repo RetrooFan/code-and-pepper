@@ -1,0 +1,27 @@
+services:
+  node-test:
+    container_name: code-and-pepper-node-test
+    image: node:22-alpine3.21
+    working_dir: /app
+    tty: true
+    volumes:
+      - node-test:/app
+      - .:/app
+    command: npm run test:e2e
+    depends_on:
+      - mongo-test
+
+  mongo-test:
+    container_name: code-and-pepper-mongo-test
+    image: mongo:8.0.8
+    tty: true
+    ports:
+      - 27027:27017
+    volumes:
+      - mongo-test:/data/db
+
+volumes:
+  node-test:
+    name: code-and-pepper-node-test
+  mongo-test:
+    name: code-and-pepper-mongo-test

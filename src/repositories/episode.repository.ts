@@ -5,6 +5,7 @@ import { DbConnection } from '../enums/dbConnection.enum';
 import { Model } from 'mongoose';
 import { CreateEpisodeDto } from '../modules/episodes/dtos/createEpisode.dto';
 import { ReplaceEpisodeDto } from '../modules/episodes/dtos/replaceEpisode.dto';
+import { PaginationQueryDto } from '../dtos/pagination.query.dto';
 
 @Injectable()
 export class EpisodeRepository {
@@ -13,8 +14,12 @@ export class EpisodeRepository {
     private readonly episodeModel: Model<Episode>,
   ) {}
 
-  find() {
-    return this.episodeModel.find<Episode>().sort({ createdAt: 1 }).skip(0).limit(10);
+  find(paginationQueryDto: PaginationQueryDto) {
+    return this.episodeModel
+      .find<Episode>()
+      .sort({ createdAt: 1 })
+      .skip(paginationQueryDto.offset)
+      .limit(paginationQueryDto.limit);
   }
 
   create(createEpisodeDto: CreateEpisodeDto) {

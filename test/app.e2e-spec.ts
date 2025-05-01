@@ -3,9 +3,11 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { App } from 'supertest/types';
 import { AppModule } from './../src/app.module';
+import TestAgent from 'supertest/lib/agent';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication<App>;
+  let api: TestAgent;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -15,12 +17,11 @@ describe('AppController (e2e)', () => {
     app = moduleFixture.createNestApplication();
 
     await app.init();
+
+    api = request(app.getHttpServer());
   });
 
   it('/ (GET)', () => {
-    return request(app.getHttpServer())
-      .get('/')
-      .expect(200)
-      .expect('Hello World!');
+    return api.get('/').expect(200).expect('Hello World!');
   });
 });

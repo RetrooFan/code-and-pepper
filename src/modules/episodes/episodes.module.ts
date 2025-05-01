@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigService } from '@nestjs/config';
 import { DbConnection } from '../../enums/dbConnection.enum';
 import { Episode, episodeSchema } from '../../entities/episode.entity';
+import { EpisodeRepository } from '../../repositories/episode.repository';
 
 @Module({
   imports: [
@@ -26,6 +27,6 @@ import { Episode, episodeSchema } from '../../entities/episode.entity';
     ),
   ],
   controllers: [EpisodesController],
-  providers: [EpisodesService],
+  providers: [EpisodesService, EpisodeRepository],
 })
 export class EpisodesModule {}

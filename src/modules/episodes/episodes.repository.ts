@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
-import { Episode, EpisodeDocument } from './episode.entity';
+import { Episode, EpisodeDocument } from '../../entities/episode.entity';
 import { DbConnection } from '../../enums/dbConnection.enum';
 import { CreateEpisodeDto } from './dtos/createEpisode.dto';
 import { UpdateOneEpisodeDto } from './dtos/updateOneEpisode.dto';

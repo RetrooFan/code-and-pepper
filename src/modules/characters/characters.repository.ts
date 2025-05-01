@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
-import { Character, CharacterDocument } from './character.entity';
+import { Character, CharacterDocument } from '../../entities/character.entity';
 import { DbConnection } from '../../enums/dbConnection.enum';
 import { CreateCharacterDto } from './dtos/createCharacter.dto';
 import { UpdateOneCharacterDto } from './dtos/updateOneCharacter.dto';

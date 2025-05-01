@@ -5,7 +5,7 @@ import { ConfigService } from '@nestjs/config';
 import { CharactersController } from './characters.controller';
 import { CharactersService } from './characters.service';
 import { DbConnection } from '../../enums/dbConnection.enum';
-import { Character, characterSchema } from './character.entity';
+import { Character, characterSchema } from '../../entities/character.entity';
 import { CharactersRepository } from './characters.repository';
 
 @Module({

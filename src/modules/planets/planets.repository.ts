@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
-import { Planet, PlanetDocument } from './planet.entity';
+import { Planet, PlanetDocument } from '../../entities/planet.entity';
 import { DbConnection } from '../../enums/dbConnection.enum';
 import { CreatePlanetDto } from './dtos/createPlanet.dto';
 import { UpdateOnePlanetDto } from './dtos/updateOnePlanet.dto';

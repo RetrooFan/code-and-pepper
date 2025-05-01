@@ -6,12 +6,12 @@ export class EpisodesController {
   constructor(private readonly episodesService: EpisodesService) {}
 
   @Get()
-  private findAll() {
+  findAll() {
     return this.episodesService.findAll();
   }
 
   @Post()
-  private create(@Body() body) {
+  create(@Body() body: any) {
     return this.episodesService.create(body);
   }
 }

@@ -7,6 +7,7 @@ import { PlanetsService } from './planets.service';
 import { DbConnection } from '../../enums/dbConnection.enum';
 import { Planet, planetSchema } from '../../entities/planet.entity';
 import { PlanetsRepository } from './planets.repository';
+import { Character, characterSchema } from '../../entities/character.entity';
 
 @Module({
   imports: [
@@ -22,6 +23,10 @@ import { PlanetsRepository } from './planets.repository';
         {
           name: Planet.name,
           schema: planetSchema,
+        },
+        {
+          name: Character.name,
+          schema: characterSchema,
         },
       ],
       DbConnection.PLANETS,

@@ -7,6 +7,8 @@ import { CharactersService } from './characters.service';
 import { DbConnection } from '../../enums/dbConnection.enum';
 import { Character, characterSchema } from '../../entities/character.entity';
 import { CharactersRepository } from './characters.repository';
+import { Episode, episodeSchema } from '../../entities/episode.entity';
+import { Planet, planetSchema } from '../../entities/planet.entity';
 
 @Module({
   imports: [
@@ -22,6 +24,14 @@ import { CharactersRepository } from './characters.repository';
         {
           name: Character.name,
           schema: characterSchema,
+        },
+        {
+          name: Episode.name,
+          schema: episodeSchema,
+        },
+        {
+          name: Planet.name,
+          schema: planetSchema,
         },
       ],
       DbConnection.CHARACTERS,

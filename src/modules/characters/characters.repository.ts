@@ -8,12 +8,18 @@ import { CreateCharacterDto } from './dtos/createCharacter.dto';
 import { UpdateOneCharacterDto } from './dtos/updateOneCharacter.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { IdDto } from '../../dtos/id.dto';
+import { Episode, EpisodeDocument } from '../../entities/episode.entity';
+import { Planet, PlanetDocument } from '../../entities/planet.entity';
 
 @Injectable()
 export class CharactersRepository {
   constructor(
     @InjectModel(Character.name, DbConnection.CHARACTERS)
     private readonly characterModel: Model<CharacterDocument>,
+    @InjectModel(Episode.name, DbConnection.CHARACTERS)
+    private readonly episodeModel: Model<EpisodeDocument>,
+    @InjectModel(Planet.name, DbConnection.CHARACTERS)
+    private readonly planetModel: Model<PlanetDocument>,
   ) {}
 
   find(paginationQueryDto: PaginationQueryDto) {
@@ -21,7 +27,9 @@ export class CharactersRepository {
       .find<Character>()
       .sort({ createdAt: 1 })
       .skip(paginationQueryDto.offset)
-      .limit(paginationQueryDto.limit);
+      .limit(paginationQueryDto.limit)
+      .populate({ path: 'episodes', model: this.episodeModel })
+      .populate({ path: 'planet', model: this.planetModel });
   }
 
   create(createCharacterDto: CreateCharacterDto) {

@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
-import { EpisodesController } from './episodes.controller';
-import { EpisodesService } from './episodes.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigService } from '@nestjs/config';
+
+import { EpisodesController } from './episodes.controller';
+import { EpisodesService } from './episodes.service';
 import { DbConnection } from '../../enums/dbConnection.enum';
 import { Episode, episodeSchema } from '../../entities/episode.entity';
 import { EpisodesRepository } from '../../repositories/episodes.repository';

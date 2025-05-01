@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+
 import { Episode } from '../entities/episode.entity';
 import { DbConnection } from '../enums/dbConnection.enum';
-import { Model } from 'mongoose';
 import { CreateEpisodeDto } from '../modules/episodes/dtos/createEpisode.dto';
 import { ReplaceOneEpisodeDto } from '../modules/episodes/dtos/replaceOneEpisode.dto';
 import { PaginationQueryDto } from '../dtos/pagination.query.dto';

@@ -5,7 +5,5 @@ import configuration from './configuration';
 
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true, load: [configuration] }), HelloWorldModule],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}

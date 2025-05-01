@@ -7,7 +7,7 @@ import { DbConnection } from '../enums/dbConnection.enum';
 import { CreatePlanetDto } from '../modules/planets/dtos/createPlanet.dto';
 import { UpdateOnePlanetDto } from '../modules/planets/dtos/updateOnePlanet.dto';
 import { PaginationQueryDto } from '../dtos/pagination.query.dto';
-import { DeleteOnePlanetDto } from '../modules/planets/dtos/deleteOnePlanet.dto';
+import { IdDto } from '../dtos/id.dto';
 
 @Injectable()
 export class PlanetsRepository {
@@ -32,7 +32,7 @@ export class PlanetsRepository {
     return this.planetModel.updateOne({ _id: updateOnePlanetDto.id }, updateOnePlanetDto);
   }
 
-  deleteOne(deleteOnePlanetDto: DeleteOnePlanetDto) {
-    return this.planetModel.deleteOne({ _id: deleteOnePlanetDto.id });
+  deleteOne(idDto: IdDto) {
+    return this.planetModel.deleteOne({ _id: idDto.id });
   }
 }

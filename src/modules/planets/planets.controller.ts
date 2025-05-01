@@ -21,8 +21,8 @@ export class PlanetsController {
   }
 
   @Put()
-  updateOne(@Body() updateOnePlanetDto: UpdateOnePlanetDto) {
-    return this.planetsService.updateOne(updateOnePlanetDto);
+  updateOne(@Param() idDto: IdDto, @Body() updateOnePlanetDto: UpdateOnePlanetDto) {
+    return this.planetsService.updateOne(idDto, updateOnePlanetDto);
   }
 
   @Delete(':id')

@@ -28,8 +28,8 @@ export class PlanetsRepository {
     return this.planetModel.create(createPlanetDto);
   }
 
-  updateOne(updateOnePlanetDto: UpdateOnePlanetDto) {
-    return this.planetModel.updateOne({ _id: updateOnePlanetDto.id }, updateOnePlanetDto);
+  updateOne(idDto: IdDto, updateOnePlanetDto: UpdateOnePlanetDto) {
+    return this.planetModel.updateOne({ _id: idDto.id }, updateOnePlanetDto);
   }
 
   deleteOne(idDto: IdDto) {

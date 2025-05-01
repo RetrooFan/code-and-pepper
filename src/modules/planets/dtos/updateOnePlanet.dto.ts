@@ -1,8 +1,3 @@
-import { IsString } from 'class-validator';
+import { CreatePlanetDto } from './createPlanet.dto';
 
-import { IdDto } from '../../../dtos/id.dto';
-
-export class UpdateOnePlanetDto extends IdDto {
-  @IsString()
-  name: string;
-}
+export class UpdateOnePlanetDto extends CreatePlanetDto {}

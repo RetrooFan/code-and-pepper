@@ -18,8 +18,8 @@ export class PlanetsService {
     return this.planetsRepository.create(createPlanetDto);
   }
 
-  updateOne(updateOnePlanetDto: UpdateOnePlanetDto) {
-    return this.planetsRepository.updateOne(updateOnePlanetDto);
+  updateOne(idDto: IdDto, updateOnePlanetDto: UpdateOnePlanetDto) {
+    return this.planetsRepository.updateOne(idDto, updateOnePlanetDto);
   }
 
   deleteOne(idDto: IdDto) {

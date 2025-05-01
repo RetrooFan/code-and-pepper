@@ -4,7 +4,6 @@ import { EpisodesRepository } from '../../repositories/episodes.repository';
 import { CreateEpisodeDto } from './dtos/createEpisode.dto';
 import { UpdateOneEpisodeDto } from './dtos/updateOneEpisode.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
-import { DeleteOneEpisodeDto } from './dtos/deleteOneEpisode.dto';
 
 @Injectable()
 export class EpisodesService {
@@ -22,7 +21,7 @@ export class EpisodesService {
     return this.episodesRepository.updateOne(updateOneEpisodeDto);
   }
 
-  deleteOne(deleteOneEpisodeDto: DeleteOneEpisodeDto) {
-    return this.episodesRepository.deleteOne(deleteOneEpisodeDto);
+  deleteOne(idDto: IdDto) {
+    return this.episodesRepository.deleteOne(idDto);
   }
 }

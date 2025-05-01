@@ -2,7 +2,6 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, SchemaTypes } from 'mongoose';
 
 import { Character } from './character.entity';
-import { emptyArrayValidator } from './validators';
 
 export type EpisodeDocument = Episode & Document;
 
@@ -11,7 +10,7 @@ export class Episode {
   @Prop({ required: true })
   name: string;
 
-  @Prop({ required: true, type: [SchemaTypes.ObjectId], ...emptyArrayValidator })
+  @Prop({ required: true, type: [SchemaTypes.ObjectId] })
   characters: Character[];
 }
 

@@ -5,8 +5,8 @@ import { EpisodeRepository } from '../../repositories/episode.repository';
 export class EpisodesService {
   constructor(private readonly episodeRepository: EpisodeRepository) {}
 
-  findAll() {
-    return this.episodeRepository.findAll();
+  find() {
+    return this.episodeRepository.find();
   }
 
   create(body: any) {

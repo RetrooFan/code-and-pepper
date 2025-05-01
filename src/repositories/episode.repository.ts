@@ -11,7 +11,7 @@ export class EpisodeRepository {
     private readonly episodeModel: Model<Episode>,
   ) {}
 
-  findAll() {
+  find() {
     return this.episodeModel.find<Episode>().sort({ createdAt: 1 }).skip(0).limit(10);
   }
 

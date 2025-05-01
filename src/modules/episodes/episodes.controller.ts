@@ -6,8 +6,8 @@ export class EpisodesController {
   constructor(private readonly episodesService: EpisodesService) {}
 
   @Get()
-  findAll() {
-    return this.episodesService.findAll();
+  find() {
+    return this.episodesService.find();
   }
 
   @Post()

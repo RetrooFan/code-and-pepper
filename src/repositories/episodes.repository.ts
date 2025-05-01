@@ -9,7 +9,7 @@ import { PaginationQueryDto } from '../dtos/pagination.query.dto';
 import { DeleteOneEpisodeDto } from '../modules/episodes/dtos/deleteOneEpisode.dto';
 
 @Injectable()
-export class EpisodeRepository {
+export class EpisodesRepository {
   constructor(
     @InjectModel(Episode.name, DbConnection.EPISODES)
     private readonly episodeModel: Model<Episode>,

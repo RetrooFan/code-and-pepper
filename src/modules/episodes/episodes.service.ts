@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { EpisodeRepository } from '../../repositories/episode.repository';
+import { EpisodesRepository } from '../../repositories/episodes.repository';
 import { CreateEpisodeDto } from './dtos/createEpisode.dto';
 import { ReplaceOneEpisodeDto } from './dtos/replaceOneEpisode.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
@@ -7,21 +7,21 @@ import { DeleteOneEpisodeDto } from './dtos/deleteOneEpisode.dto';
 
 @Injectable()
 export class EpisodesService {
-  constructor(private readonly episodeRepository: EpisodeRepository) {}
+  constructor(private readonly episodesRepository: EpisodesRepository) {}
 
   find(paginationQueryDto: PaginationQueryDto) {
-    return this.episodeRepository.find(paginationQueryDto);
+    return this.episodesRepository.find(paginationQueryDto);
   }
 
   create(createEpisodeDto: CreateEpisodeDto) {
-    return this.episodeRepository.create(createEpisodeDto);
+    return this.episodesRepository.create(createEpisodeDto);
   }
 
   replaceOne(replaceOneEpisodeDto: ReplaceOneEpisodeDto) {
-    return this.episodeRepository.replaceOne(replaceOneEpisodeDto);
+    return this.episodesRepository.replaceOne(replaceOneEpisodeDto);
   }
 
   deleteOne(deleteOneEpisodeDto: DeleteOneEpisodeDto) {
-    return this.episodeRepository.deleteOne(deleteOneEpisodeDto);
+    return this.episodesRepository.deleteOne(deleteOneEpisodeDto);
   }
 }

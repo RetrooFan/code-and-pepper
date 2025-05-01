@@ -4,7 +4,7 @@ import { EpisodesService } from './episodes.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigService } from '@nestjs/config';
 import { DbConnection } from '../../enums/dbConnection.enum';
-import { EpisodeEntity, episodeSchema } from '../../entities/episode.entity';
+import { Episode, episodeSchema } from '../../entities/episode.entity';
 
 @Module({
   imports: [
@@ -18,7 +18,7 @@ import { EpisodeEntity, episodeSchema } from '../../entities/episode.entity';
     MongooseModule.forFeature(
       [
         {
-          name: EpisodeEntity.name,
+          name: Episode.name,
           schema: episodeSchema,
         },
       ],

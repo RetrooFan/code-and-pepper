@@ -6,6 +6,7 @@ import { Model } from 'mongoose';
 import { CreateEpisodeDto } from '../modules/episodes/dtos/createEpisode.dto';
 import { ReplaceOneEpisodeDto } from '../modules/episodes/dtos/replaceOneEpisode.dto';
 import { PaginationQueryDto } from '../dtos/pagination.query.dto';
+import { DeleteOneEpisodeDto } from '../modules/episodes/dtos/deleteOneEpisode.dto';
 
 @Injectable()
 export class EpisodeRepository {
@@ -28,5 +29,9 @@ export class EpisodeRepository {
 
   replaceOne(replaceOneEpisodeDto: ReplaceOneEpisodeDto) {
     return this.episodeModel.replaceOne({ _id: replaceOneEpisodeDto.id }, replaceOneEpisodeDto);
+  }
+
+  deleteOne(deleteOneEpisodeDto: DeleteOneEpisodeDto) {
+    return this.episodeModel.deleteOne({ _id: deleteOneEpisodeDto.id });
   }
 }

@@ -2,7 +2,7 @@ import { Controller, Get } from '@nestjs/common';
 
 import { HelloWorldService } from './helloWorld.service';
 
-@Controller()
+@Controller('helloWorld')
 export class HelloWorldController {
   constructor(private readonly helloWorldService: HelloWorldService) {}
 

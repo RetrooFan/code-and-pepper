@@ -1,10 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-export type EpisodeDocument = EpisodeEntity & Document;
+export type EpisodeDocument = Episode & Document;
 
 @Schema({ timestamps: true })
-export class EpisodeEntity {
+export class Episode {
   @Prop({ required: true, alias: 'id' })
   _id: string;
 
@@ -12,4 +12,4 @@ export class EpisodeEntity {
   name: string;
 }
 
-export const episodeSchema = SchemaFactory.createForClass(EpisodeEntity);
+export const episodeSchema = SchemaFactory.createForClass(Episode);

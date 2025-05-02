@@ -21,6 +21,8 @@ services:
       - 27017:27017
     volumes:
       - code-and-pepper-dev-mongo:/data/db
+      - ./mongo-init.sh:/mongo-init.sh
+    entrypoint: /mongo-init.sh
 
 volumes:
   code-and-pepper-dev-node:

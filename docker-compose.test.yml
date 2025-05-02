@@ -19,6 +19,8 @@ services:
       - 27027:27017
     volumes:
       - code-and-pepper-test-mongo:/data/db
+      - ./mongo-init.sh:/mongo-init.sh
+    entrypoint: /mongo-init.sh
 
 volumes:
   code-and-pepper-test-node:

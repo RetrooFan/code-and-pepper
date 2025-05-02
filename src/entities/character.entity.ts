@@ -14,7 +14,7 @@ export class Character {
   @Prop({ type: [SchemaTypes.ObjectId] })
   episodes: Episode[];
 
-  @Prop({ required: true, type: SchemaTypes.ObjectId })
+  @Prop({ type: SchemaTypes.ObjectId })
   planet: Planet;
 }
 

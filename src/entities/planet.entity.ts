@@ -10,7 +10,7 @@ export class Planet {
   @Prop({ required: true })
   name: string;
 
-  @Prop({ required: true, type: [SchemaTypes.ObjectId] })
+  @Prop({ type: [SchemaTypes.ObjectId] })
   characters: Character[];
 }
 

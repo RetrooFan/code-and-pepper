@@ -11,7 +11,7 @@ export class Character {
   @Prop({ required: true })
   name: string;
 
-  @Prop({ required: true, type: [SchemaTypes.ObjectId] })
+  @Prop({ type: [SchemaTypes.ObjectId] })
   episodes: Episode[];
 
   @Prop({ required: true, type: SchemaTypes.ObjectId })

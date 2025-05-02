@@ -3,7 +3,6 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
 import { Character, CharacterDocument } from '../../entities/character.entity';
-import { DbConnection } from '../../enums/dbConnection.enum';
 import { CreateCharacterDto } from './dtos/createCharacter.dto';
 import { UpdateOneCharacterDto } from './dtos/updateOneCharacter.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
@@ -14,11 +13,11 @@ import { Planet, PlanetDocument } from '../../entities/planet.entity';
 @Injectable()
 export class CharactersRepository {
   constructor(
-    @InjectModel(Character.name, DbConnection.CHARACTERS)
+    @InjectModel(Character.name, CharactersRepository.name)
     private readonly characterModel: Model<CharacterDocument>,
-    @InjectModel(Episode.name, DbConnection.CHARACTERS)
+    @InjectModel(Episode.name, CharactersRepository.name)
     private readonly episodeModel: Model<EpisodeDocument>,
-    @InjectModel(Planet.name, DbConnection.CHARACTERS)
+    @InjectModel(Planet.name, CharactersRepository.name)
     private readonly planetModel: Model<PlanetDocument>,
   ) {}
 

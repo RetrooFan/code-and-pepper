@@ -4,7 +4,6 @@ import { ConfigService } from '@nestjs/config';
 
 import { EpisodesController } from './episodes.controller';
 import { EpisodesService } from './episodes.service';
-import { DbConnection } from '../../enums/dbConnection.enum';
 import { Episode, episodeSchema } from '../../entities/episode.entity';
 import { EpisodesRepository } from './episodes.repository';
 import { Character, characterSchema } from '../../entities/character.entity';
@@ -16,7 +15,7 @@ import { Character, characterSchema } from '../../entities/character.entity';
       useFactory: (configService: ConfigService) => ({
         uri: configService.get<string>('mongoDbUri'),
       }),
-      connectionName: DbConnection.EPISODES,
+      connectionName: EpisodesRepository.name,
     }),
     MongooseModule.forFeature(
       [
@@ -29,7 +28,7 @@ import { Character, characterSchema } from '../../entities/character.entity';
           schema: characterSchema,
         },
       ],
-      DbConnection.EPISODES,
+      EpisodesRepository.name,
     ),
   ],
   controllers: [EpisodesController],

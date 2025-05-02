@@ -4,7 +4,6 @@ import { ConfigService } from '@nestjs/config';
 
 import { PlanetsController } from './planets.controller';
 import { PlanetsService } from './planets.service';
-import { DbConnection } from '../../enums/dbConnection.enum';
 import { Planet, planetSchema } from '../../entities/planet.entity';
 import { PlanetsRepository } from './planets.repository';
 import { Character, characterSchema } from '../../entities/character.entity';
@@ -16,7 +15,7 @@ import { Character, characterSchema } from '../../entities/character.entity';
       useFactory: (configService: ConfigService) => ({
         uri: configService.get<string>('mongoDbUri'),
       }),
-      connectionName: DbConnection.PLANETS,
+      connectionName: PlanetsRepository.name,
     }),
     MongooseModule.forFeature(
       [
@@ -29,7 +28,7 @@ import { Character, characterSchema } from '../../entities/character.entity';
           schema: characterSchema,
         },
       ],
-      DbConnection.PLANETS,
+      PlanetsRepository.name,
     ),
   ],
   controllers: [PlanetsController],

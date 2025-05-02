@@ -3,8 +3,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
 import { Planet, PlanetDocument } from '../../entities/planet.entity';
-import { CreatePlanetDto } from './dtos/createPlanet.dto';
-import { UpdateOnePlanetDto } from './dtos/updateOnePlanet.dto';
+import { CreatePlanetDto } from '../../dtos/createPlanet.dto';
+import { UpdateOnePlanetDto } from '../../dtos/updateOnePlanet.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { IdDto } from '../../dtos/id.dto';
 import { Character, CharacterDocument } from '../../entities/character.entity';

@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 
 import { PlanetsService } from './planets.service';
-import { CreatePlanetDto } from './dtos/createPlanet.dto';
-import { UpdateOnePlanetDto } from './dtos/updateOnePlanet.dto';
+import { CreatePlanetDto } from '../../dtos/createPlanet.dto';
+import { UpdateOnePlanetDto } from '../../dtos/updateOnePlanet.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { IdDto } from '../../dtos/id.dto';
 

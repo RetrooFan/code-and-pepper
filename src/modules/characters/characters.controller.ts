@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 
 import { CharactersService } from './characters.service';
-import { CreateCharacterDto } from './dtos/createCharacter.dto';
-import { UpdateOneCharacterDto } from './dtos/updateOneCharacter.dto';
+import { CreateCharacterDto } from '../../dtos/createCharacter.dto';
+import { UpdateOneCharacterDto } from '../../dtos/updateOneCharacter.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { IdDto } from '../../dtos/id.dto';
 

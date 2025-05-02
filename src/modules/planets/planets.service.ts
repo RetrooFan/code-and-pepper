@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 
 import { PlanetsRepository } from './planets.repository';
-import { CreatePlanetDto } from './dtos/createPlanet.dto';
-import { UpdateOnePlanetDto } from './dtos/updateOnePlanet.dto';
+import { CreatePlanetDto } from '../../dtos/createPlanet.dto';
+import { UpdateOnePlanetDto } from '../../dtos/updateOnePlanet.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { IdDto } from '../../dtos/id.dto';
 

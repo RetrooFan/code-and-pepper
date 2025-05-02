@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { ClientSession, Model } from 'mongoose';
 
 import { Character, CharacterDocument } from '../../entities/character.entity';
 import { CreateCharacterDto } from '../../dtos/createCharacter.dto';
@@ -31,15 +31,15 @@ export class CharactersRepository {
       .populate({ path: 'planet', model: this.planetModel });
   }
 
-  create(createCharacterDto: CreateCharacterDto) {
-    return this.characterModel.create(createCharacterDto);
+  create(createCharacterDto: CreateCharacterDto, session?: ClientSession) {
+    return new this.characterModel(createCharacterDto).save({ session });
   }
 
-  updateOne(idDto: IdDto, updateOneCharacterDto: UpdateOneCharacterDto) {
-    return this.characterModel.updateOne({ _id: idDto.id }, updateOneCharacterDto);
+  updateOne(idDto: IdDto, updateOneCharacterDto: UpdateOneCharacterDto, session?: ClientSession) {
+    return this.characterModel.updateOne({ _id: idDto.id }, updateOneCharacterDto, { session });
   }
 
-  deleteOne(idDto: IdDto) {
-    return this.characterModel.deleteOne({ _id: idDto.id });
+  deleteOne(idDto: IdDto, session?: ClientSession) {
+    return this.characterModel.deleteOne({ _id: idDto.id }, { session });
   }
 }

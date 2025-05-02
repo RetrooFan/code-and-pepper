@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { ClientSession, Model } from 'mongoose';
 
 import { Episode, EpisodeDocument } from '../../entities/episode.entity';
 import { CreateEpisodeDto } from '../../dtos/createEpisode.dto';
@@ -27,15 +27,15 @@ export class EpisodesRepository {
       .populate({ path: 'characters', model: this.characterModel });
   }
 
-  create(createEpisodeDto: CreateEpisodeDto) {
-    return this.episodeModel.create(createEpisodeDto);
+  create(createEpisodeDto: CreateEpisodeDto, session?: ClientSession) {
+    return new this.episodeModel(createEpisodeDto).save({ session });
   }
 
-  updateOne(idDto: IdDto, updateOneEpisodeDto: UpdateOneEpisodeDto) {
-    return this.episodeModel.updateOne({ _id: idDto.id }, updateOneEpisodeDto);
+  updateOne(idDto: IdDto, updateOneEpisodeDto: UpdateOneEpisodeDto, session?: ClientSession) {
+    return this.episodeModel.updateOne({ _id: idDto.id }, updateOneEpisodeDto, { session });
   }
 
-  deleteOne(idDto: IdDto) {
-    return this.episodeModel.deleteOne({ _id: idDto.id });
+  deleteOne(idDto: IdDto, session?: ClientSession) {
+    return this.episodeModel.deleteOne({ _id: idDto.id }, { session });
   }
 }

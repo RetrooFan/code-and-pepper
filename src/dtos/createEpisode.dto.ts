@@ -1,4 +1,4 @@
-import { IsMongoId, IsOptional, IsString, MaxLength, MinLength } from 'class-validator';
+import { IsEmpty, IsString, MaxLength, MinLength } from 'class-validator';
 import { ObjectId } from 'mongoose';
 
 export class CreateEpisodeDto {
@@ -7,7 +7,6 @@ export class CreateEpisodeDto {
   @MaxLength(32)
   name: string;
 
-  @IsOptional()
-  @IsMongoId({ each: true })
+  @IsEmpty()
   characters: ObjectId[];
 }

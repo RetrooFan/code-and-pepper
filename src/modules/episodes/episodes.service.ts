@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 import { EpisodesRepository } from '../../repositories/episodes.repository';
-import { CreateEpisodeDto } from '../../dtos/createEpisode.dto';
+import { SaveEpisodeDto } from '../../dtos/saveEpisode.dto';
 import { UpdateOneEpisodeDto } from '../../dtos/updateOneEpisode.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { IdDto } from '../../dtos/id.dto';
@@ -14,8 +14,8 @@ export class EpisodesService {
     return this.episodesRepository.find(paginationQueryDto);
   }
 
-  save(createEpisodeDto: CreateEpisodeDto) {
-    return this.episodesRepository.save(createEpisodeDto);
+  save(saveEpisodeDto: SaveEpisodeDto) {
+    return this.episodesRepository.save(saveEpisodeDto);
   }
 
   updateOne(idDto: IdDto, updateOneEpisodeDto: UpdateOneEpisodeDto) {

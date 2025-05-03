@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { ClientSession, Model } from 'mongoose';
 
 import { Episode, EpisodeDocument } from '../entities/episode.entity';
-import { CreateEpisodeDto } from '../dtos/createEpisode.dto';
+import { SaveEpisodeDto } from '../dtos/saveEpisode.dto';
 import { UpdateOneEpisodeDto } from '../dtos/updateOneEpisode.dto';
 import { PaginationQueryDto } from '../dtos/pagination.query.dto';
 import { IdDto } from '../dtos/id.dto';
@@ -36,8 +36,8 @@ export class EpisodesRepository {
     return this.episodeModel.findById(idDto);
   }
 
-  save(createEpisodeDto: CreateEpisodeDto, session?: ClientSession) {
-    return new this.episodeModel(createEpisodeDto).save({ session });
+  save(saveEpisodeDto: SaveEpisodeDto, session?: ClientSession) {
+    return new this.episodeModel(saveEpisodeDto).save({ session });
   }
 
   updateOne(idDto: IdDto, updateOneEpisodeDto: UpdateOneEpisodeDto, session?: ClientSession) {

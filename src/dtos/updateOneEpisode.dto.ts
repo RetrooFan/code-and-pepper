@@ -1,3 +1,3 @@
-import { CreateEpisodeDto } from './createEpisode.dto';
+import { SaveEpisodeDto } from './saveEpisode.dto';
 
-export class UpdateOneEpisodeDto extends CreateEpisodeDto {}
+export class UpdateOneEpisodeDto extends SaveEpisodeDto {}

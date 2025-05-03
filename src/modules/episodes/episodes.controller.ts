@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 
 import { EpisodesService } from './episodes.service';
-import { CreateEpisodeDto } from '../../dtos/createEpisode.dto';
+import { SaveEpisodeDto } from '../../dtos/saveEpisode.dto';
 import { UpdateOneEpisodeDto } from '../../dtos/updateOneEpisode.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { IdDto } from '../../dtos/id.dto';
@@ -16,8 +16,8 @@ export class EpisodesController {
   }
 
   @Post()
-  save(@Body() createEpisodeDto: CreateEpisodeDto) {
-    return this.episodesService.save(createEpisodeDto);
+  save(@Body() saveEpisodeDto: SaveEpisodeDto) {
+    return this.episodesService.save(saveEpisodeDto);
   }
 
   @Put(':id')

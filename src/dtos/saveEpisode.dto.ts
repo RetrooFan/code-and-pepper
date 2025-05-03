@@ -2,7 +2,7 @@ import { IsString, MaxLength, MinLength } from 'class-validator';
 
 import { CreateDto } from './create.dto';
 
-export class CreateEpisodeDto extends CreateDto {
+export class SaveEpisodeDto extends CreateDto {
   @IsString()
   @MinLength(1)
   @MaxLength(32)

@@ -1,4 +1,4 @@
-import { ClientSession, Model } from 'mongoose';
+import { ClientSession, Model, Types } from 'mongoose';
 
 import { PaginationQueryDto } from '../dtos/pagination.query.dto';
 import { IdDto } from '../dtos/id.dto';
@@ -15,8 +15,8 @@ export abstract class RepositoryAbstract<TSchema, TDocument> {
       .limit(paginationQueryDto.limit);
   }
 
-  findById(idDto: IdDto) {
-    return this.modelAbstract.findById<TSchema>(idDto.id);
+  findById(id: Types.ObjectId) {
+    return this.modelAbstract.findById<TSchema>(id);
   }
 
   save(saveDto: SaveDto, session?: ClientSession) {

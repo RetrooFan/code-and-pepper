@@ -4,7 +4,6 @@ import { PlanetsRepository } from '../../repositories/planets.repository';
 import { SavePlanetDto } from '../../dtos/savePlanet.dto';
 import { UpdateOnePlanetDto } from '../../dtos/updateOnePlanet.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
-import { IdDto } from '../../dtos/id.dto';
 import { CharactersRepository } from '../../repositories/characters.repository';
 
 @Injectable()
@@ -22,13 +21,13 @@ export class PlanetsService {
     return this.planetsRepository.save(savePlanetDto);
   }
 
-  async addCharacter(planetIdDto: IdDto, characterIdDto: IdDto) {
-    const planet = await this.planetsRepository.findById(planetIdDto.id);
+  async addCharacter(planetId: string, characterId: string) {
+    const planet = await this.planetsRepository.findById(planetId);
     if (!planet) {
       throw new HttpException('No such a planet.', 400);
     }
 
-    const character = await this.charactersRepository.findById(characterIdDto.id);
+    const character = await this.charactersRepository.findById(characterId);
     if (!character) {
       throw new HttpException('No such a character.', 400);
     }
@@ -50,11 +49,11 @@ export class PlanetsService {
     return planet;
   }
 
-  updateOne(idDto: IdDto, updateOnePlanetDto: UpdateOnePlanetDto) {
-    return this.planetsRepository.updateOne(idDto.id, updateOnePlanetDto);
+  updateOne(planetId: string, updateOnePlanetDto: UpdateOnePlanetDto) {
+    return this.planetsRepository.updateOne(planetId, updateOnePlanetDto);
   }
 
-  deleteOne(idDto: IdDto) {
-    return this.planetsRepository.deleteOne(idDto.id);
+  deleteOne(planetId: string) {
+    return this.planetsRepository.deleteOne(planetId);
   }
 }

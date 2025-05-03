@@ -22,16 +22,16 @@ export class PlanetsController {
 
   @Post(':id/characters')
   addCharacter(@Param() planetIdDto: IdDto, @Body() characterIdDto: IdDto) {
-    return this.planetsService.addCharacter(planetIdDto, characterIdDto);
+    return this.planetsService.addCharacter(planetIdDto.id, characterIdDto.id);
   }
 
   @Put(':id')
   updateOne(@Param() idDto: IdDto, @Body() updateOnePlanetDto: UpdateOnePlanetDto) {
-    return this.planetsService.updateOne(idDto, updateOnePlanetDto);
+    return this.planetsService.updateOne(idDto.id, updateOnePlanetDto);
   }
 
   @Delete(':id')
   deleteOne(@Param() idDto: IdDto) {
-    return this.planetsService.deleteOne(idDto);
+    return this.planetsService.deleteOne(idDto.id);
   }
 }

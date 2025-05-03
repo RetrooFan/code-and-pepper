@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, SchemaTypes } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
 import { Character } from './character.entity';
 import { Id } from './id.entity';
@@ -11,7 +11,7 @@ export class Episode extends Id {
   @Prop({ required: true })
   name: string;
 
-  @Prop({ type: [SchemaTypes.ObjectId] })
+  @Prop({ type: [Types.ObjectId] })
   characters: Character[];
 }
 

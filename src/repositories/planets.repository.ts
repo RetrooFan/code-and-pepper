@@ -19,12 +19,17 @@ export class PlanetsRepository {
   ) {}
 
   find(paginationQueryDto: PaginationQueryDto) {
-    return this.planetModel
+    const query = this.planetModel
       .find<Planet>()
       .sort({ createdAt: 1 })
       .skip(paginationQueryDto.offset)
-      .limit(paginationQueryDto.limit)
-      .populate({ path: 'characters', model: this.characterModel });
+      .limit(paginationQueryDto.limit);
+
+    if (paginationQueryDto.populate) {
+      return query.populate({ path: 'characters', model: this.characterModel });
+    }
+
+    return query;
   }
 
   save(createPlanetDto: CreatePlanetDto, session?: ClientSession) {

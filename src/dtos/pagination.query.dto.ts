@@ -1,4 +1,4 @@
-import { IsNumber, Max, Min } from 'class-validator';
+import { IsIn, IsNumber, IsOptional, Max, Min } from 'class-validator';
 import { Transform } from 'class-transformer';
 
 export class PaginationQueryDto {
@@ -12,4 +12,9 @@ export class PaginationQueryDto {
   @IsNumber()
   @Transform(({ value }) => parseInt(value as string))
   limit = 10;
+
+  @IsOptional()
+  @IsIn([0, 1])
+  @Transform(({ value }) => parseInt(value as string))
+  populate: number;
 }

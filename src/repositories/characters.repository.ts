@@ -22,13 +22,19 @@ export class CharactersRepository {
   ) {}
 
   find(paginationQueryDto: PaginationQueryDto) {
-    return this.characterModel
+    const query = this.characterModel
       .find<Character>()
       .sort({ createdAt: 1 })
       .skip(paginationQueryDto.offset)
-      .limit(paginationQueryDto.limit)
-      .populate({ path: 'episodes', model: this.episodeModel })
-      .populate({ path: 'planet', model: this.planetModel });
+      .limit(paginationQueryDto.limit);
+
+    if (paginationQueryDto.populate) {
+      return query
+        .populate({ path: 'episodes', model: this.episodeModel })
+        .populate({ path: 'planet', model: this.planetModel });
+    }
+
+    return query;
   }
 
   save(createCharacterDto: CreateCharacterDto, session?: ClientSession) {

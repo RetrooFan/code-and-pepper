@@ -19,12 +19,17 @@ export class EpisodesRepository {
   ) {}
 
   find(paginationQueryDto: PaginationQueryDto) {
-    return this.episodeModel
+    const query = this.episodeModel
       .find<Episode>()
       .sort({ createdAt: 1 })
       .skip(paginationQueryDto.offset)
-      .limit(paginationQueryDto.limit)
-      .populate({ path: 'characters', model: this.characterModel });
+      .limit(paginationQueryDto.limit);
+
+    if (paginationQueryDto.populate) {
+      return query.populate({ path: 'characters', model: this.characterModel });
+    }
+
+    return query;
   }
 
   save(createEpisodeDto: CreateEpisodeDto, session?: ClientSession) {

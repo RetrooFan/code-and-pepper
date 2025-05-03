@@ -1,4 +1,4 @@
-import { ClientSession, Document, Model } from 'mongoose';
+import { ClientSession, Model } from 'mongoose';
 
 import { PaginationQueryDto } from '../dtos/pagination.query.dto';
 import { IdDto } from '../dtos/id.dto';

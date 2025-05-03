@@ -2,7 +2,7 @@ import { ClientSession, Document, Model } from 'mongoose';
 
 import { PaginationQueryDto } from '../dtos/pagination.query.dto';
 import { IdDto } from '../dtos/id.dto';
-import { SaveDto } from '../dtos/create.dto';
+import { SaveDto } from '../dtos/save.dto';
 
 export abstract class RepositoryAbstract<TSchema> {
   protected abstract readonly modelAbstract: Model<Document>;

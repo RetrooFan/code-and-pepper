@@ -1,6 +1,6 @@
 import { IsString, MaxLength, MinLength } from 'class-validator';
 
-import { SaveDto } from './create.dto';
+import { SaveDto } from './save.dto';
 
 export class SavePlanetDto extends SaveDto {
   @IsString()

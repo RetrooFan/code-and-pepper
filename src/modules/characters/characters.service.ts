@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { CharactersRepository } from '../../repositories/characters/characters.repository';
+import { CharactersRepository } from '../../repositories/characters.repository';
 import { CreateCharacterDto } from '../../dtos/createCharacter.dto';
 import { UpdateOneCharacterDto } from '../../dtos/updateOneCharacter.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';

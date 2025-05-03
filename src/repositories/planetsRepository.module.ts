@@ -2,9 +2,9 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigService } from '@nestjs/config';
 
-import { Episode, episodeSchema } from '../../entities/episode.entity';
-import { EpisodesRepository } from './episodes.repository';
-import { Character, characterSchema } from '../../entities/character.entity';
+import { Planet, planetSchema } from '../entities/planet.entity';
+import { PlanetsRepository } from './planets.repository';
+import { Character, characterSchema } from '../entities/character.entity';
 
 @Module({
   imports: [
@@ -13,23 +13,23 @@ import { Character, characterSchema } from '../../entities/character.entity';
       useFactory: (configService: ConfigService) => ({
         uri: configService.get<string>('mongoDbUri'),
       }),
-      connectionName: EpisodesRepository.name,
+      connectionName: PlanetsRepository.name,
     }),
     MongooseModule.forFeature(
       [
         {
-          name: Episode.name,
-          schema: episodeSchema,
+          name: Planet.name,
+          schema: planetSchema,
         },
         {
           name: Character.name,
           schema: characterSchema,
         },
       ],
-      EpisodesRepository.name,
+      PlanetsRepository.name,
     ),
   ],
-  providers: [EpisodesRepository],
-  exports: [EpisodesRepository],
+  providers: [PlanetsRepository],
+  exports: [PlanetsRepository],
 })
-export class EpisodesRepositoryModule {}
+export class PlanetsRepositoryModule {}

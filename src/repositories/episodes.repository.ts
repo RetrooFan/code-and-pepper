@@ -2,12 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { ClientSession, Model } from 'mongoose';
 
-import { Episode, EpisodeDocument } from '../../entities/episode.entity';
-import { CreateEpisodeDto } from '../../dtos/createEpisode.dto';
-import { UpdateOneEpisodeDto } from '../../dtos/updateOneEpisode.dto';
-import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
-import { IdDto } from '../../dtos/id.dto';
-import { Character, CharacterDocument } from '../../entities/character.entity';
+import { Episode, EpisodeDocument } from '../entities/episode.entity';
+import { CreateEpisodeDto } from '../dtos/createEpisode.dto';
+import { UpdateOneEpisodeDto } from '../dtos/updateOneEpisode.dto';
+import { PaginationQueryDto } from '../dtos/pagination.query.dto';
+import { IdDto } from '../dtos/id.dto';
+import { Character, CharacterDocument } from '../entities/character.entity';
 
 @Injectable()
 export class EpisodesRepository {

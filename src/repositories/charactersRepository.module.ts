@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigService } from '@nestjs/config';
 
-import { Character, characterSchema } from '../../entities/character.entity';
+import { Character, characterSchema } from '../entities/character.entity';
 import { CharactersRepository } from './characters.repository';
-import { Episode, episodeSchema } from '../../entities/episode.entity';
-import { Planet, planetSchema } from '../../entities/planet.entity';
+import { Episode, episodeSchema } from '../entities/episode.entity';
+import { Planet, planetSchema } from '../entities/planet.entity';
 
 @Module({
   imports: [

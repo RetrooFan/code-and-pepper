@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { EpisodesRepository } from '../../repositories/episodes/episodes.repository';
+import { EpisodesRepository } from '../../repositories/episodes.repository';
 import { CreateEpisodeDto } from '../../dtos/createEpisode.dto';
 import { UpdateOneEpisodeDto } from '../../dtos/updateOneEpisode.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';

@@ -1,7 +1,6 @@
 import { ClientSession, Model, Types } from 'mongoose';
 
 import { PaginationQueryDto } from '../dtos/pagination.query.dto';
-import { IdDto } from '../dtos/id.dto';
 import { SaveDto } from '../dtos/save.dto';
 
 export abstract class RepositoryAbstract<TSchema, TDocument> {
@@ -15,19 +14,19 @@ export abstract class RepositoryAbstract<TSchema, TDocument> {
       .limit(paginationQueryDto.limit);
   }
 
-  findById(id: Types.ObjectId) {
-    return this.modelAbstract.findById<TSchema>(id);
+  findById(_id: Types.ObjectId) {
+    return this.modelAbstract.findById<TSchema>(_id);
   }
 
   save(saveDto: SaveDto, session?: ClientSession) {
     return new this.modelAbstract(saveDto).save({ session });
   }
 
-  updateOne(idDto: IdDto, saveDto: SaveDto, session?: ClientSession) {
-    return this.modelAbstract.updateOne({ _id: idDto.id }, saveDto, { session });
+  updateOne(_id: Types.ObjectId, saveDto: SaveDto, session?: ClientSession) {
+    return this.modelAbstract.updateOne({ _id }, saveDto, { session });
   }
 
-  deleteOne(idDto: IdDto, session?: ClientSession) {
-    return this.modelAbstract.deleteOne({ _id: idDto.id }, { session });
+  deleteOne(_id: Types.ObjectId, session?: ClientSession) {
+    return this.modelAbstract.deleteOne({ _id }, { session });
   }
 }

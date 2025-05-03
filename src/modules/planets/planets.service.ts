@@ -19,10 +19,10 @@ export class PlanetsService {
   }
 
   updateOne(idDto: IdDto, updateOnePlanetDto: UpdateOnePlanetDto) {
-    return this.planetsRepository.updateOne(idDto, updateOnePlanetDto);
+    return this.planetsRepository.updateOne(idDto.id, updateOnePlanetDto);
   }
 
   deleteOne(idDto: IdDto) {
-    return this.planetsRepository.deleteOne(idDto);
+    return this.planetsRepository.deleteOne(idDto.id);
   }
 }

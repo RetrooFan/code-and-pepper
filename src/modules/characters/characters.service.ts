@@ -19,10 +19,10 @@ export class CharactersService {
   }
 
   updateOne(idDto: IdDto, updateOneCharacterDto: UpdateOneCharacterDto) {
-    return this.charactersRepository.updateOne(idDto, updateOneCharacterDto);
+    return this.charactersRepository.updateOne(idDto.id, updateOneCharacterDto);
   }
 
   deleteOne(idDto: IdDto) {
-    return this.charactersRepository.deleteOne(idDto);
+    return this.charactersRepository.deleteOne(idDto.id);
   }
 }

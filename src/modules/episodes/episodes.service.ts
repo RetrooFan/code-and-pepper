@@ -19,10 +19,10 @@ export class EpisodesService {
   }
 
   updateOne(idDto: IdDto, updateOneEpisodeDto: UpdateOneEpisodeDto) {
-    return this.episodesRepository.updateOne(idDto, updateOneEpisodeDto);
+    return this.episodesRepository.updateOne(idDto.id, updateOneEpisodeDto);
   }
 
   deleteOne(idDto: IdDto) {
-    return this.episodesRepository.deleteOne(idDto);
+    return this.episodesRepository.deleteOne(idDto.id);
   }
 }

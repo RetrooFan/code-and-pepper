@@ -14,8 +14,8 @@ export class CharactersService {
     return this.charactersRepository.find(paginationQueryDto);
   }
 
-  create(createCharacterDto: CreateCharacterDto) {
-    return this.charactersRepository.create(createCharacterDto);
+  save(createCharacterDto: CreateCharacterDto) {
+    return this.charactersRepository.save(createCharacterDto);
   }
 
   updateOne(idDto: IdDto, updateOneCharacterDto: UpdateOneCharacterDto) {

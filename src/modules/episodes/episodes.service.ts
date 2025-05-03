@@ -14,8 +14,8 @@ export class EpisodesService {
     return this.episodesRepository.find(paginationQueryDto);
   }
 
-  create(createEpisodeDto: CreateEpisodeDto) {
-    return this.episodesRepository.create(createEpisodeDto);
+  save(createEpisodeDto: CreateEpisodeDto) {
+    return this.episodesRepository.save(createEpisodeDto);
   }
 
   updateOne(idDto: IdDto, updateOneEpisodeDto: UpdateOneEpisodeDto) {

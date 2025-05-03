@@ -27,7 +27,7 @@ export class EpisodesRepository {
       .populate({ path: 'characters', model: this.characterModel });
   }
 
-  create(createEpisodeDto: CreateEpisodeDto, session?: ClientSession) {
+  save(createEpisodeDto: CreateEpisodeDto, session?: ClientSession) {
     return new this.episodeModel(createEpisodeDto).save({ session });
   }
 

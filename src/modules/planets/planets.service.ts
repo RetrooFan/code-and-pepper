@@ -14,8 +14,8 @@ export class PlanetsService {
     return this.planetsRepository.find(paginationQueryDto);
   }
 
-  create(createPlanetDto: CreatePlanetDto) {
-    return this.planetsRepository.create(createPlanetDto);
+  save(createPlanetDto: CreatePlanetDto) {
+    return this.planetsRepository.save(createPlanetDto);
   }
 
   updateOne(idDto: IdDto, updateOnePlanetDto: UpdateOnePlanetDto) {

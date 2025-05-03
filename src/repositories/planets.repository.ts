@@ -27,7 +27,7 @@ export class PlanetsRepository {
       .populate({ path: 'characters', model: this.characterModel });
   }
 
-  create(createPlanetDto: CreatePlanetDto, session?: ClientSession) {
+  save(createPlanetDto: CreatePlanetDto, session?: ClientSession) {
     return new this.planetModel(createPlanetDto).save({ session });
   }
 

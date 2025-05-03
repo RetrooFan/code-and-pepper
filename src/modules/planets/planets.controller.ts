@@ -16,8 +16,8 @@ export class PlanetsController {
   }
 
   @Post()
-  create(@Body() createPlanetDto: CreatePlanetDto) {
-    return this.planetsService.create(createPlanetDto);
+  save(@Body() createPlanetDto: CreatePlanetDto) {
+    return this.planetsService.save(createPlanetDto);
   }
 
   @Put(':id')

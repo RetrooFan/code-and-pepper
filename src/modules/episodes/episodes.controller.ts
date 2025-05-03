@@ -16,8 +16,8 @@ export class EpisodesController {
   }
 
   @Post()
-  create(@Body() createEpisodeDto: CreateEpisodeDto) {
-    return this.episodesService.create(createEpisodeDto);
+  save(@Body() createEpisodeDto: CreateEpisodeDto) {
+    return this.episodesService.save(createEpisodeDto);
   }
 
   @Put(':id')

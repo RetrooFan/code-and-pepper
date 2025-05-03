@@ -16,8 +16,8 @@ export class CharactersController {
   }
 
   @Post()
-  create(@Body() createCharacterDto: CreateCharacterDto) {
-    return this.charactersService.create(createCharacterDto);
+  save(@Body() createCharacterDto: CreateCharacterDto) {
+    return this.charactersService.save(createCharacterDto);
   }
 
   @Put(':id')

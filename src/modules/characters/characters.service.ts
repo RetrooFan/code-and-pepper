@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 
 import { CharactersRepository } from '../../repositories/characters.repository';
 import { SaveCharacterDto } from '../../dtos/saveCharacter.dto';
@@ -20,6 +20,26 @@ export class CharactersService {
 
   save(saveCharacterDto: SaveCharacterDto) {
     return this.charactersRepository.save(saveCharacterDto);
+  }
+
+  async addEpisode(characterIdDto: IdDto, episodeIdDto: IdDto) {
+    const character = await this.charactersRepository.findById(characterIdDto.id);
+    if (!character) {
+      throw new HttpException('No such a character.', 400);
+    }
+
+    const episode = await this.episodesRepository.findById(episodeIdDto.id);
+    if (!episode) {
+      throw new HttpException('No such an episode.', 400);
+    }
+
+    character.episodes.push(episode);
+    episode.characters.push(character);
+
+    await this.charactersRepository.updateOne(character._id.toString(), character);
+    await this.episodesRepository.updateOne(episode._id.toString(), episode);
+
+    return character;
   }
 
   updateOne(idDto: IdDto, updateOneCharacterDto: UpdateOneCharacterDto) {

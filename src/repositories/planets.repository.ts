@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { ClientSession, Model } from 'mongoose';
 
 import { Planet, PlanetDocument } from '../entities/planet.entity';
 import { PaginationQueryDto } from '../dtos/pagination.query.dto';
@@ -26,5 +26,19 @@ export class PlanetsRepository extends RepositoryAbstract<Planet, PlanetDocument
     }
 
     return query;
+  }
+
+  async deleteOne(_id: string, session?: ClientSession) {
+    const planet = await this.findById(_id);
+
+    if (!planet) {
+      throw new HttpException('No such a planet.', 400);
+    }
+
+    if (planet.characters.length) {
+      throw new HttpException('Planet has assigned planets.', 400);
+    }
+
+    return super.deleteOne(_id, session);
   }
 }

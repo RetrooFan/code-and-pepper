@@ -26,7 +26,7 @@ export abstract class RepositoryAbstract<TSchema, TDocument> {
     return this.modelAbstract.updateOne({ _id }, saveDto, { session });
   }
 
-  deleteOne(_id: string, session?: ClientSession) {
+  async deleteOne(_id: string, session?: ClientSession) {
     return this.modelAbstract.deleteOne({ _id }, { session });
   }
 }

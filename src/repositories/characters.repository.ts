@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { ClientSession, Model } from 'mongoose';
 
 import { Character, CharacterDocument } from '../entities/character.entity';
 import { PaginationQueryDto } from '../dtos/pagination.query.dto';
@@ -31,5 +31,23 @@ export class CharactersRepository extends RepositoryAbstract<Character, Characte
     }
 
     return query;
+  }
+
+  async deleteOne(_id: string, session?: ClientSession) {
+    const character = await this.findById(_id);
+
+    if (!character) {
+      throw new HttpException('No such a character.', 400);
+    }
+
+    if (character.episodes.length) {
+      throw new HttpException('Character has assigned episodes.', 400);
+    }
+
+    if (character.planet) {
+      throw new HttpException('Character has assigned planet.', 400);
+    }
+
+    return super.deleteOne(_id, session);
   }
 }

@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { ClientSession, Model } from 'mongoose';
 
 import { Episode, EpisodeDocument } from '../entities/episode.entity';
 import { PaginationQueryDto } from '../dtos/pagination.query.dto';
@@ -26,5 +26,19 @@ export class EpisodesRepository extends RepositoryAbstract<Episode, EpisodeDocum
     }
 
     return query;
+  }
+
+  async deleteOne(_id: string, session?: ClientSession) {
+    const episode = await this.findById(_id);
+
+    if (!episode) {
+      throw new HttpException('No such an episode.', 400);
+    }
+
+    if (episode.characters.length) {
+      throw new HttpException('Episode has assigned characters.', 400);
+    }
+
+    return super.deleteOne(_id, session);
   }
 }

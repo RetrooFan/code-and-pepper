@@ -22,16 +22,16 @@ export class EpisodesController {
 
   @Post(':id/characters')
   addCharacter(@Param() episodeIdDto: IdDto, @Body() characterIdDto: IdDto) {
-    return this.episodesService.addCharacter(episodeIdDto, characterIdDto);
+    return this.episodesService.addCharacter(episodeIdDto.id, characterIdDto.id);
   }
 
   @Put(':id')
   updateOne(@Param() idDto: IdDto, @Body() updateOneEpisodeDto: UpdateOneEpisodeDto) {
-    return this.episodesService.updateOne(idDto, updateOneEpisodeDto);
+    return this.episodesService.updateOne(idDto.id, updateOneEpisodeDto);
   }
 
   @Delete(':id')
   deleteOne(@Param() idDto: IdDto) {
-    return this.episodesService.deleteOne(idDto);
+    return this.episodesService.deleteOne(idDto.id);
   }
 }

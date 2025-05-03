@@ -33,6 +33,14 @@ export class EpisodesService {
       throw new HttpException('No such a character.', 400);
     }
 
+    if (episode.characters.find((element) => element._id.equals(character._id))) {
+      throw new HttpException('Character already added for this episode.', 400);
+    }
+
+    if (character.episodes.find((element) => element._id.equals(episode._id))) {
+      throw new HttpException('Episode already added for this character.', 400);
+    }
+
     episode.characters.push(character);
     character.episodes.push(episode);
 

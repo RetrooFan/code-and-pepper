@@ -20,6 +20,11 @@ export class CharactersController {
     return this.charactersService.save(saveCharacterDto);
   }
 
+  @Post(':id/episodes')
+  addEpisode(@Param() characterIdDto: IdDto, @Body() episodeIdDto: IdDto) {
+    return this.charactersService.addEpisode(characterIdDto, episodeIdDto);
+  }
+
   @Put(':id')
   updateOne(@Param() idDto: IdDto, @Body() updateOneCharacterDto: UpdateOneCharacterDto) {
     return this.charactersService.updateOne(idDto, updateOneCharacterDto);

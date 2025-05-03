@@ -5,10 +5,14 @@ import { SaveCharacterDto } from '../../dtos/saveCharacter.dto';
 import { UpdateOneCharacterDto } from '../../dtos/updateOneCharacter.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { IdDto } from '../../dtos/id.dto';
+import { EpisodesRepository } from '../../repositories/episodes.repository';
 
 @Injectable()
 export class CharactersService {
-  constructor(private readonly charactersRepository: CharactersRepository) {}
+  constructor(
+    private readonly charactersRepository: CharactersRepository,
+    private readonly episodesRepository: EpisodesRepository,
+  ) {}
 
   find(paginationQueryDto: PaginationQueryDto) {
     return this.charactersRepository.find(paginationQueryDto);

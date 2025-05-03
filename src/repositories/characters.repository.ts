@@ -1,32 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { ClientSession, Model } from 'mongoose';
+import { Model } from 'mongoose';
 
 import { Character, CharacterDocument } from '../entities/character.entity';
-import { SaveCharacterDto } from '../dtos/saveCharacter.dto';
-import { UpdateOneCharacterDto } from '../dtos/updateOneCharacter.dto';
 import { PaginationQueryDto } from '../dtos/pagination.query.dto';
-import { IdDto } from '../dtos/id.dto';
 import { Episode, EpisodeDocument } from '../entities/episode.entity';
 import { Planet, PlanetDocument } from '../entities/planet.entity';
+import { RepositoryAbstract } from './repository.abstract';
 
 @Injectable()
-export class CharactersRepository {
+export class CharactersRepository extends RepositoryAbstract<Character> {
   constructor(
     @InjectModel(Character.name, CharactersRepository.name)
-    private readonly characterModel: Model<CharacterDocument>,
+    protected readonly modelAbstract: Model<CharacterDocument>,
     @InjectModel(Episode.name, CharactersRepository.name)
     private readonly episodeModel: Model<EpisodeDocument>,
     @InjectModel(Planet.name, CharactersRepository.name)
     private readonly planetModel: Model<PlanetDocument>,
-  ) {}
+  ) {
+    super();
+  }
 
   find(paginationQueryDto: PaginationQueryDto) {
-    const query = this.characterModel
-      .find<Character>()
-      .sort({ createdAt: 1 })
-      .skip(paginationQueryDto.offset)
-      .limit(paginationQueryDto.limit);
+    const query = super.find(paginationQueryDto);
 
     if (paginationQueryDto.populate) {
       return query
@@ -35,21 +31,5 @@ export class CharactersRepository {
     }
 
     return query;
-  }
-
-  findById(idDto: IdDto) {
-    return this.characterModel.findById(idDto);
-  }
-
-  save(saveCharacterDto: SaveCharacterDto, session?: ClientSession) {
-    return new this.characterModel(saveCharacterDto).save({ session });
-  }
-
-  updateOne(idDto: IdDto, updateOneCharacterDto: UpdateOneCharacterDto, session?: ClientSession) {
-    return this.characterModel.updateOne({ _id: idDto.id }, updateOneCharacterDto, { session });
-  }
-
-  deleteOne(idDto: IdDto, session?: ClientSession) {
-    return this.characterModel.deleteOne({ _id: idDto.id }, { session });
   }
 }

@@ -4,8 +4,8 @@ import { PaginationQueryDto } from '../dtos/pagination.query.dto';
 import { IdDto } from '../dtos/id.dto';
 import { SaveDto } from '../dtos/save.dto';
 
-export abstract class RepositoryAbstract<TSchema> {
-  protected abstract readonly modelAbstract: Model<Document>;
+export abstract class RepositoryAbstract<TSchema, TDocument> {
+  protected abstract readonly modelAbstract: Model<TDocument>;
 
   find(paginationQueryDto: PaginationQueryDto) {
     return this.modelAbstract

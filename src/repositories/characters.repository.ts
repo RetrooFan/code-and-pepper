@@ -9,7 +9,7 @@ import { Planet, PlanetDocument } from '../entities/planet.entity';
 import { RepositoryAbstract } from './repository.abstract';
 
 @Injectable()
-export class CharactersRepository extends RepositoryAbstract<Character> {
+export class CharactersRepository extends RepositoryAbstract<Character, CharacterDocument> {
   constructor(
     @InjectModel(Character.name, CharactersRepository.name)
     protected readonly modelAbstract: Model<CharacterDocument>,

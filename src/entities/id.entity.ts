@@ -1,5 +1,5 @@
-import { ObjectId } from 'mongoose';
+import { Types } from 'mongoose';
 
 export class Id {
-  _id: ObjectId;
+  _id: Types.ObjectId;
 }

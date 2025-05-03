@@ -3,7 +3,7 @@ import { ObjectId } from 'mongoose';
 
 import { CreateDto } from './create.dto';
 
-export class CreateCharacterDto extends CreateDto {
+export class SaveCharacterDto extends CreateDto {
   @IsString()
   @MinLength(1)
   @MaxLength(32)

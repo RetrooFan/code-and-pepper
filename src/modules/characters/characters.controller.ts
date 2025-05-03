@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 
 import { CharactersService } from './characters.service';
-import { CreateCharacterDto } from '../../dtos/createCharacter.dto';
+import { SaveCharacterDto } from '../../dtos/saveCharacter.dto';
 import { UpdateOneCharacterDto } from '../../dtos/updateOneCharacter.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { IdDto } from '../../dtos/id.dto';
@@ -16,8 +16,8 @@ export class CharactersController {
   }
 
   @Post()
-  save(@Body() createCharacterDto: CreateCharacterDto) {
-    return this.charactersService.save(createCharacterDto);
+  save(@Body() saveCharacterDto: SaveCharacterDto) {
+    return this.charactersService.save(saveCharacterDto);
   }
 
   @Put(':id')

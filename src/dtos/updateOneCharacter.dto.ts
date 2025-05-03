@@ -1,3 +1,3 @@
-import { CreateCharacterDto } from './createCharacter.dto';
+import { SaveCharacterDto } from './saveCharacter.dto';
 
-export class UpdateOneCharacterDto extends CreateCharacterDto {}
+export class UpdateOneCharacterDto extends SaveCharacterDto {}

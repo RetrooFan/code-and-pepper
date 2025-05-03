@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 import { CharactersRepository } from '../../repositories/characters.repository';
-import { CreateCharacterDto } from '../../dtos/createCharacter.dto';
+import { SaveCharacterDto } from '../../dtos/saveCharacter.dto';
 import { UpdateOneCharacterDto } from '../../dtos/updateOneCharacter.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { IdDto } from '../../dtos/id.dto';
@@ -14,8 +14,8 @@ export class CharactersService {
     return this.charactersRepository.find(paginationQueryDto);
   }
 
-  save(createCharacterDto: CreateCharacterDto) {
-    return this.charactersRepository.save(createCharacterDto);
+  save(saveCharacterDto: SaveCharacterDto) {
+    return this.charactersRepository.save(saveCharacterDto);
   }
 
   updateOne(idDto: IdDto, updateOneCharacterDto: UpdateOneCharacterDto) {

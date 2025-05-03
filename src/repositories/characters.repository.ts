@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { ClientSession, Model } from 'mongoose';
 
 import { Character, CharacterDocument } from '../entities/character.entity';
-import { CreateCharacterDto } from '../dtos/createCharacter.dto';
+import { SaveCharacterDto } from '../dtos/saveCharacter.dto';
 import { UpdateOneCharacterDto } from '../dtos/updateOneCharacter.dto';
 import { PaginationQueryDto } from '../dtos/pagination.query.dto';
 import { IdDto } from '../dtos/id.dto';
@@ -41,8 +41,8 @@ export class CharactersRepository {
     return this.characterModel.findById(idDto);
   }
 
-  save(createCharacterDto: CreateCharacterDto, session?: ClientSession) {
-    return new this.characterModel(createCharacterDto).save({ session });
+  save(saveCharacterDto: SaveCharacterDto, session?: ClientSession) {
+    return new this.characterModel(saveCharacterDto).save({ session });
   }
 
   updateOne(idDto: IdDto, updateOneCharacterDto: UpdateOneCharacterDto, session?: ClientSession) {

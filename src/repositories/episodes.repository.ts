@@ -32,6 +32,10 @@ export class EpisodesRepository {
     return query;
   }
 
+  findById(idDto: IdDto) {
+    return this.episodeModel.findById(idDto);
+  }
+
   save(createEpisodeDto: CreateEpisodeDto, session?: ClientSession) {
     return new this.episodeModel(createEpisodeDto).save({ session });
   }

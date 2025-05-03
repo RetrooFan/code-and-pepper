@@ -37,6 +37,10 @@ export class CharactersRepository {
     return query;
   }
 
+  findById(idDto: IdDto) {
+    return this.characterModel.findById(idDto);
+  }
+
   save(createCharacterDto: CreateCharacterDto, session?: ClientSession) {
     return new this.characterModel(createCharacterDto).save({ session });
   }

@@ -32,6 +32,10 @@ export class PlanetsRepository {
     return query;
   }
 
+  findById(idDto: IdDto) {
+    return this.planetModel.findById(idDto);
+  }
+
   save(createPlanetDto: CreatePlanetDto, session?: ClientSession) {
     return new this.planetModel(createPlanetDto).save({ session });
   }

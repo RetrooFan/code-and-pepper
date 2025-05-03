@@ -6,12 +6,14 @@ import { UpdateOneCharacterDto } from '../../dtos/updateOneCharacter.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { IdDto } from '../../dtos/id.dto';
 import { EpisodesRepository } from '../../repositories/episodes.repository';
+import { PlanetsRepository } from '../../repositories/planets.repository';
 
 @Injectable()
 export class CharactersService {
   constructor(
     private readonly charactersRepository: CharactersRepository,
     private readonly episodesRepository: EpisodesRepository,
+    private readonly planetsRepository: PlanetsRepository,
   ) {}
 
   find(paginationQueryDto: PaginationQueryDto) {
@@ -38,6 +40,26 @@ export class CharactersService {
 
     await this.charactersRepository.updateOne(character._id.toString(), character);
     await this.episodesRepository.updateOne(episode._id.toString(), episode);
+
+    return character;
+  }
+
+  async addPlanet(characterIdDto: IdDto, planetIdDto: IdDto) {
+    const character = await this.charactersRepository.findById(characterIdDto.id);
+    if (!character) {
+      throw new HttpException('No such a character.', 400);
+    }
+
+    const planet = await this.planetsRepository.findById(planetIdDto.id);
+    if (!planet) {
+      throw new HttpException('No such a planet.', 400);
+    }
+
+    character.planet = planet;
+    planet.characters.push(character);
+
+    await this.charactersRepository.updateOne(character._id.toString(), character);
+    await this.planetsRepository.updateOne(planet._id.toString(), planet);
 
     return character;
   }

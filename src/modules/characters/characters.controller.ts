@@ -25,6 +25,11 @@ export class CharactersController {
     return this.charactersService.addEpisode(characterIdDto, episodeIdDto);
   }
 
+  @Post(':id/planet')
+  addPlanet(@Param() characterIdDto: IdDto, @Body() planetIdDto: IdDto) {
+    return this.charactersService.addPlanet(characterIdDto, planetIdDto);
+  }
+
   @Put(':id')
   updateOne(@Param() idDto: IdDto, @Body() updateOneCharacterDto: UpdateOneCharacterDto) {
     return this.charactersService.updateOne(idDto, updateOneCharacterDto);

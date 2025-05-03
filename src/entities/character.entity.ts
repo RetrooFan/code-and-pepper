@@ -3,11 +3,12 @@ import { Document, SchemaTypes } from 'mongoose';
 
 import { Episode } from './episode.entity';
 import { Planet } from './planet.entity';
+import { Id } from './id.entity';
 
 export type CharacterDocument = Character & Document;
 
 @Schema({ timestamps: true })
-export class Character {
+export class Character extends Id {
   @Prop({ required: true })
   name: string;
 

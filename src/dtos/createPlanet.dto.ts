@@ -1,7 +1,9 @@
 import { IsEmpty, IsString, MaxLength, MinLength } from 'class-validator';
 import { ObjectId } from 'mongoose';
 
-export class CreatePlanetDto {
+import { CreateDto } from './create.dto';
+
+export class CreatePlanetDto extends CreateDto {
   @IsString()
   @MinLength(1)
   @MaxLength(32)

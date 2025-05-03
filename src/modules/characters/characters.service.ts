@@ -63,6 +63,14 @@ export class CharactersService {
       throw new HttpException('No such a planet.', 400);
     }
 
+    if (character.planet) {
+      throw new HttpException('Planet already added for this character.', 400);
+    }
+
+    if (planet.characters.find((element) => element._id.equals(character._id))) {
+      throw new HttpException('Character already added for this planet.', 400);
+    }
+
     character.planet = planet;
     planet.characters.push(character);
 

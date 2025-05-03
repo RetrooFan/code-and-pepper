@@ -16,7 +16,7 @@ export abstract class RepositoryAbstract<TSchema> {
   }
 
   findById(idDto: IdDto) {
-    return this.modelAbstract.findById(idDto);
+    return this.modelAbstract.findById<TSchema>(idDto);
   }
 
   save(saveDto: SaveDto, session?: ClientSession) {

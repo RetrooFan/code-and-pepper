@@ -4,7 +4,6 @@ import { CharactersRepository } from '../../repositories/characters.repository';
 import { SaveCharacterDto } from '../../dtos/saveCharacter.dto';
 import { UpdateOneCharacterDto } from '../../dtos/updateOneCharacter.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
-import { IdDto } from '../../dtos/id.dto';
 import { EpisodesRepository } from '../../repositories/episodes.repository';
 import { PlanetsRepository } from '../../repositories/planets.repository';
 
@@ -24,13 +23,13 @@ export class CharactersService {
     return this.charactersRepository.save(saveCharacterDto);
   }
 
-  async addEpisode(characterIdDto: IdDto, episodeIdDto: IdDto) {
-    const character = await this.charactersRepository.findById(characterIdDto.id);
+  async addEpisode(characterId: string, episodeId: string) {
+    const character = await this.charactersRepository.findById(characterId);
     if (!character) {
       throw new HttpException('No such a character.', 400);
     }
 
-    const episode = await this.episodesRepository.findById(episodeIdDto.id);
+    const episode = await this.episodesRepository.findById(episodeId);
     if (!episode) {
       throw new HttpException('No such an episode.', 400);
     }
@@ -52,13 +51,13 @@ export class CharactersService {
     return character;
   }
 
-  async addPlanet(characterIdDto: IdDto, planetIdDto: IdDto) {
-    const character = await this.charactersRepository.findById(characterIdDto.id);
+  async addPlanet(characterId: string, planetId: string) {
+    const character = await this.charactersRepository.findById(characterId);
     if (!character) {
       throw new HttpException('No such a character.', 400);
     }
 
-    const planet = await this.planetsRepository.findById(planetIdDto.id);
+    const planet = await this.planetsRepository.findById(planetId);
     if (!planet) {
       throw new HttpException('No such a planet.', 400);
     }
@@ -80,11 +79,11 @@ export class CharactersService {
     return character;
   }
 
-  updateOne(idDto: IdDto, updateOneCharacterDto: UpdateOneCharacterDto) {
-    return this.charactersRepository.updateOne(idDto.id, updateOneCharacterDto);
+  updateOne(characterId: string, updateOneCharacterDto: UpdateOneCharacterDto) {
+    return this.charactersRepository.updateOne(characterId, updateOneCharacterDto);
   }
 
-  deleteOne(idDto: IdDto) {
-    return this.charactersRepository.deleteOne(idDto.id);
+  deleteOne(characterId: string) {
+    return this.charactersRepository.deleteOne(characterId);
   }
 }

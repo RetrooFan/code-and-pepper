@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 import { PlanetsRepository } from '../../repositories/planets.repository';
-import { CreatePlanetDto } from '../../dtos/createPlanet.dto';
+import { SavePlanetDto } from '../../dtos/savePlanet.dto';
 import { UpdateOnePlanetDto } from '../../dtos/updateOnePlanet.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { IdDto } from '../../dtos/id.dto';
@@ -14,8 +14,8 @@ export class PlanetsService {
     return this.planetsRepository.find(paginationQueryDto);
   }
 
-  save(createPlanetDto: CreatePlanetDto) {
-    return this.planetsRepository.save(createPlanetDto);
+  save(savePlanetDto: SavePlanetDto) {
+    return this.planetsRepository.save(savePlanetDto);
   }
 
   updateOne(idDto: IdDto, updateOnePlanetDto: UpdateOnePlanetDto) {

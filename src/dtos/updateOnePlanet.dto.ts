@@ -1,3 +1,3 @@
-import { CreatePlanetDto } from './createPlanet.dto';
+import { SavePlanetDto } from './savePlanet.dto';
 
-export class UpdateOnePlanetDto extends CreatePlanetDto {}
+export class UpdateOnePlanetDto extends SavePlanetDto {}

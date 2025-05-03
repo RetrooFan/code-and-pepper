@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 
 import { PlanetsService } from './planets.service';
-import { CreatePlanetDto } from '../../dtos/createPlanet.dto';
+import { SavePlanetDto } from '../../dtos/savePlanet.dto';
 import { UpdateOnePlanetDto } from '../../dtos/updateOnePlanet.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { IdDto } from '../../dtos/id.dto';
@@ -16,8 +16,8 @@ export class PlanetsController {
   }
 
   @Post()
-  save(@Body() createPlanetDto: CreatePlanetDto) {
-    return this.planetsService.save(createPlanetDto);
+  save(@Body() savePlanetDto: SavePlanetDto) {
+    return this.planetsService.save(savePlanetDto);
   }
 
   @Put(':id')

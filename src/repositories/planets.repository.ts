@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { ClientSession, Model } from 'mongoose';
 
 import { Planet, PlanetDocument } from '../entities/planet.entity';
-import { CreatePlanetDto } from '../dtos/createPlanet.dto';
+import { SavePlanetDto } from '../dtos/savePlanet.dto';
 import { UpdateOnePlanetDto } from '../dtos/updateOnePlanet.dto';
 import { PaginationQueryDto } from '../dtos/pagination.query.dto';
 import { IdDto } from '../dtos/id.dto';
@@ -36,8 +36,8 @@ export class PlanetsRepository {
     return this.planetModel.findById(idDto);
   }
 
-  save(createPlanetDto: CreatePlanetDto, session?: ClientSession) {
-    return new this.planetModel(createPlanetDto).save({ session });
+  save(savePlanetDto: SavePlanetDto, session?: ClientSession) {
+    return new this.planetModel(savePlanetDto).save({ session });
   }
 
   updateOne(idDto: IdDto, updateOnePlanetDto: UpdateOnePlanetDto, session?: ClientSession) {

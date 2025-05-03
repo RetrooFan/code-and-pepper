@@ -2,7 +2,7 @@ import { IsString, MaxLength, MinLength } from 'class-validator';
 
 import { CreateDto } from './create.dto';
 
-export class CreatePlanetDto extends CreateDto {
+export class SavePlanetDto extends CreateDto {
   @IsString()
   @MinLength(1)
   @MaxLength(32)

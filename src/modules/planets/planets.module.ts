@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 
 import { PlanetsController } from './planets.controller';
 import { PlanetsService } from './planets.service';
-import { PlanetsRepositoryModule } from '../../repositories/planetsRepository.module';
+import { PlanetsRepositoryModule } from '../../repositories/planets.repository.module';
 
 @Module({
   imports: [PlanetsRepositoryModule],

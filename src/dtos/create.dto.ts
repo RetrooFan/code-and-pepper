@@ -1,1 +1,1 @@
-export abstract class CreateDto {}
+export abstract class SaveDto {}

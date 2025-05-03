@@ -1,9 +1,9 @@
 import { IsMongoId, IsOptional, IsString, MaxLength, MinLength } from 'class-validator';
 import { ObjectId } from 'mongoose';
 
-import { CreateDto } from './create.dto';
+import { SaveDto } from './create.dto';
 
-export class SaveCharacterDto extends CreateDto {
+export class SaveCharacterDto extends SaveDto {
   @IsString()
   @MinLength(1)
   @MaxLength(32)

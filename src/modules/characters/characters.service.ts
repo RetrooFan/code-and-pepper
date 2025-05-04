@@ -50,10 +50,10 @@ export class CharactersService {
     character.episodes.push(episode);
     episode.characters.push(character);
 
-    const result = await this.charactersRepository.updateOne(characterId, character);
+    await this.charactersRepository.updateOne(characterId, character);
     await this.episodesRepository.updateOne(episodeId, episode);
 
-    return result;
+    return this.charactersRepository.findById(characterId);
   }
 
   async addPlanet(characterId: string, planetId: string) {
@@ -74,10 +74,10 @@ export class CharactersService {
     character.planet = planet;
     planet.characters.push(character);
 
-    const result = await this.charactersRepository.updateOne(characterId, character);
+    await this.charactersRepository.updateOne(characterId, character);
     await this.planetsRepository.updateOne(planetId, planet);
 
-    return result;
+    return this.charactersRepository.findById(characterId);
   }
 
   async deleteEpisode(characterId: string, episodeId: string) {
@@ -102,10 +102,10 @@ export class CharactersService {
       episode.characters.splice(characterIndex, 1);
     }
 
-    const result = await this.charactersRepository.updateOne(characterId, character);
+    await this.charactersRepository.updateOne(characterId, character);
     await this.episodesRepository.updateOne(episodeId, episode);
 
-    return result;
+    return this.charactersRepository.findById(characterId);
   }
 
   async deletePlanet(characterId: string, planetId: string) {
@@ -129,9 +129,9 @@ export class CharactersService {
       planet.characters.splice(characterIndex, 1);
     }
 
-    const result = await this.charactersRepository.updateOne(characterId, character);
+    await this.charactersRepository.updateOne(characterId, character);
     await this.planetsRepository.updateOne(planetId, planet);
 
-    return result;
+    return this.charactersRepository.findById(characterId);
   }
 }

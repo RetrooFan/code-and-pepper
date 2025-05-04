@@ -48,10 +48,10 @@ export class PlanetsService {
     planet.characters.push(character);
     character.planet = planet;
 
-    const result = await this.planetsRepository.updateOne(planetId, planet);
+    await this.planetsRepository.updateOne(planetId, planet);
     await this.charactersRepository.updateOne(characterId, character);
 
-    return result;
+    return this.planetsRepository.findById(planetId);
   }
 
   async deleteCharacter(planetId: string, characterId: string) {
@@ -73,9 +73,9 @@ export class PlanetsService {
     planet.characters.splice(characterIndex, 1);
     character.planet = null;
 
-    const result = await this.planetsRepository.updateOne(planetId, planet);
+    await this.planetsRepository.updateOne(planetId, planet);
     await this.charactersRepository.updateOne(characterId, character);
 
-    return result;
+    return this.planetsRepository.findById(planetId);
   }
 }

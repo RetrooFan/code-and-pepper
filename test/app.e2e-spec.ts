@@ -7,15 +7,12 @@ import TestAgent from 'supertest/lib/agent';
 import { AppModule } from './../src/app.module';
 
 describe('AppController (e2e)', () => {
-  let app: INestApplication<App>;
   let api: TestAgent;
 
-  beforeEach(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
-    }).compile();
-
-    app = moduleFixture.createNestApplication();
+  beforeAll(async () => {
+    const moduleFixture: TestingModule = await Test.createTestingModule({ imports: [AppModule] }).compile();
+    const app = moduleFixture.createNestApplication<INestApplication<App>>();
+    global.app = app;
 
     await app.init();
 

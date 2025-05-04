@@ -5,3 +5,7 @@ afterEach(async () => {
     await connections.pop()?.close();
   }
 });
+
+afterAll(async () => {
+  await (global.app as { close: () => Promise<boolean> }).close();
+});

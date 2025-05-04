@@ -60,10 +60,13 @@ export class CharactersService {
 
     const indexEpisode = character.episodes.findIndex((element) => element._id.equals(episode._id));
     if (indexEpisode < 0) {
-      throw new HttpException('No such an episode.', 400);
+      throw new HttpException('No such an episode for this character.', 400);
     }
 
     const indexCharacter = episode.characters.findIndex((element) => element._id.equals(character._id));
+    if (indexCharacter < 0) {
+      throw new HttpException('No such a character for this episode.', 400);
+    }
 
     character.episodes.splice(indexEpisode, 1);
     episode.characters.splice(indexCharacter, 1);

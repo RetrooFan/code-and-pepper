@@ -1,10 +1,8 @@
-import { IsMongoId, IsOptional } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsMongoId } from 'class-validator';
 
 export class IdDto {
+  @ApiProperty()
   @IsMongoId()
   id: string;
-
-  @IsOptional()
-  @IsMongoId()
-  id2: string;
 }

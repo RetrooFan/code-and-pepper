@@ -5,6 +5,7 @@ import { SaveCharacterDto } from '../../dtos/saveCharacter.dto';
 import { UpdateOneCharacterDto } from '../../dtos/updateOneCharacter.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { IdDto } from '../../dtos/id.dto';
+import { IdDto2 } from '../../dtos/id2.dto';
 
 @Controller('characters')
 export class CharactersController {
@@ -41,12 +42,12 @@ export class CharactersController {
   }
 
   @Delete(':id/episodes/:id2')
-  deleteEpisode(@Param() idDto: IdDto) {
+  deleteEpisode(@Param() idDto: IdDto2) {
     return this.charactersService.deleteEpisode(idDto.id, idDto.id2);
   }
 
   @Delete(':id/planet/:id2')
-  deletePlanet(@Param() idDto: IdDto) {
+  deletePlanet(@Param() idDto: IdDto2) {
     return this.charactersService.deletePlanet(idDto.id, idDto.id2);
   }
 }

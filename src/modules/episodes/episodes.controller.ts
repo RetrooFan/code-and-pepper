@@ -25,6 +25,11 @@ export class EpisodesController {
     return this.episodesService.addCharacter(episodeIdDto.id, characterIdDto.id);
   }
 
+  @Delete(':id/characters/:id2')
+  deleteCharacter(@Param() idDto: IdDto) {
+    return this.episodesService.deleteCharacter(idDto.id, idDto.id2);
+  }
+
   @Put(':id')
   updateOne(@Param() idDto: IdDto, @Body() updateOneEpisodeDto: UpdateOneEpisodeDto) {
     return this.episodesService.updateOne(idDto.id, updateOneEpisodeDto);

@@ -45,6 +45,34 @@ export class EpisodesService {
     return episode;
   }
 
+  async deleteCharacter(episodeId: string, characterId: string) {
+    const episode = await this.episodesRepository.findById(episodeId);
+    if (!episode) {
+      throw new HttpException('No such an episode.', 400);
+    }
+
+    const character = await this.charactersRepository.findById(characterId);
+    if (!character) {
+      throw new HttpException('No such a character.', 400);
+    }
+
+    const characterIndex = episode.characters.findIndex((element) => element._id.equals(characterId));
+    if (characterIndex < 0) {
+      throw new HttpException('No such a character for this episode.', 400);
+    }
+
+    const episodeIndex = episode.characters.findIndex((element) => element._id.equals(characterId));
+    episode.characters.splice(characterIndex, 1);
+    if (episodeIndex >= 0) {
+      character.episodes.splice(episodeIndex, 1);
+    }
+
+    await this.episodesRepository.updateOne(episodeId, episode);
+    await this.charactersRepository.updateOne(characterId, character);
+
+    return episode;
+  }
+
   updateOne(episodeId: string, updateOneEpisodeDto: UpdateOneEpisodeDto) {
     return this.episodesRepository.updateOne(episodeId, updateOneEpisodeDto);
   }

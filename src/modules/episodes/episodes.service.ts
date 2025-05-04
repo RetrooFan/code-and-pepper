@@ -23,6 +23,7 @@ export class EpisodesService {
 
   async updateOne(episodeId: string, updateOneEpisodeDto: UpdateOneEpisodeDto) {
     await this.episodesRepository.updateOne(episodeId, updateOneEpisodeDto);
+
     return this.episodesRepository.findById(episodeId);
   }
 

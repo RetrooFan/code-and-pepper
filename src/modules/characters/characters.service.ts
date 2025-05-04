@@ -25,6 +25,7 @@ export class CharactersService {
 
   async updateOne(characterId: string, updateOneCharacterDto: UpdateOneCharacterDto) {
     await this.charactersRepository.updateOne(characterId, updateOneCharacterDto);
+
     return this.charactersRepository.findById(characterId);
   }
 

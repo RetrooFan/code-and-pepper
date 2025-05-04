@@ -23,6 +23,7 @@ export class PlanetsService {
 
   async updateOne(planetId: string, updateOnePlanetDto: UpdateOnePlanetDto) {
     await this.planetsRepository.updateOne(planetId, updateOnePlanetDto);
+
     return this.planetsRepository.findById(planetId);
   }
 

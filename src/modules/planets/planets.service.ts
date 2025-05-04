@@ -5,10 +5,15 @@ import { SavePlanetDto } from '../../dtos/savePlanet.dto';
 import { UpdateOnePlanetDto } from '../../dtos/updateOnePlanet.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { CharactersRepository } from '../../repositories/characters.repository';
+import { transaction } from '../../utils/transaction';
+import { InjectConnection } from '@nestjs/mongoose';
+import { Connection } from 'mongoose';
 
 @Injectable()
 export class PlanetsService {
   constructor(
+    @InjectConnection(PlanetsRepository.name)
+    private readonly connection: Connection,
     private readonly planetsRepository: PlanetsRepository,
     private readonly charactersRepository: CharactersRepository,
   ) {}
@@ -49,8 +54,10 @@ export class PlanetsService {
     planet.characters.push(character);
     character.planet = planet;
 
-    await this.planetsRepository.updateOne(planetId, planet);
-    await this.charactersRepository.updateOne(characterId, character);
+    await transaction(async (session) => {
+      await this.planetsRepository.updateOne(planetId, planet, session);
+      await this.charactersRepository.updateOne(characterId, character, session);
+    }, this.connection);
 
     return this.planetsRepository.findById(planetId);
   }
@@ -74,8 +81,10 @@ export class PlanetsService {
     planet.characters.splice(characterIndex, 1);
     character.planet = null;
 
-    await this.planetsRepository.updateOne(planetId, planet);
-    await this.charactersRepository.updateOne(characterId, character);
+    await transaction(async (session) => {
+      await this.planetsRepository.updateOne(planetId, planet, session);
+      await this.charactersRepository.updateOne(characterId, character, session);
+    }, this.connection);
 
     return this.planetsRepository.findById(planetId);
   }

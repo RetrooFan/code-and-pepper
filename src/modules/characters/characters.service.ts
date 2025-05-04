@@ -6,10 +6,15 @@ import { UpdateOneCharacterDto } from '../../dtos/updateOneCharacter.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { EpisodesRepository } from '../../repositories/episodes.repository';
 import { PlanetsRepository } from '../../repositories/planets.repository';
+import { transaction } from '../../utils/transaction';
+import { InjectConnection } from '@nestjs/mongoose';
+import { Connection } from 'mongoose';
 
 @Injectable()
 export class CharactersService {
   constructor(
+    @InjectConnection(PlanetsRepository.name)
+    private readonly connection: Connection,
     private readonly charactersRepository: CharactersRepository,
     private readonly episodesRepository: EpisodesRepository,
     private readonly planetsRepository: PlanetsRepository,
@@ -51,8 +56,10 @@ export class CharactersService {
     character.episodes.push(episode);
     episode.characters.push(character);
 
-    await this.charactersRepository.updateOne(characterId, character);
-    await this.episodesRepository.updateOne(episodeId, episode);
+    await transaction(async (session) => {
+      await this.charactersRepository.updateOne(characterId, character, session);
+      await this.episodesRepository.updateOne(episodeId, episode, session);
+    }, this.connection);
 
     return this.charactersRepository.findById(characterId);
   }
@@ -75,8 +82,10 @@ export class CharactersService {
     character.planet = planet;
     planet.characters.push(character);
 
-    await this.charactersRepository.updateOne(characterId, character);
-    await this.planetsRepository.updateOne(planetId, planet);
+    await transaction(async (session) => {
+      await this.charactersRepository.updateOne(characterId, character, session);
+      await this.planetsRepository.updateOne(planetId, planet, session);
+    }, this.connection);
 
     return this.charactersRepository.findById(characterId);
   }
@@ -103,8 +112,10 @@ export class CharactersService {
       episode.characters.splice(characterIndex, 1);
     }
 
-    await this.charactersRepository.updateOne(characterId, character);
-    await this.episodesRepository.updateOne(episodeId, episode);
+    await transaction(async (session) => {
+      await this.charactersRepository.updateOne(characterId, character, session);
+      await this.episodesRepository.updateOne(episodeId, episode, session);
+    }, this.connection);
 
     return this.charactersRepository.findById(characterId);
   }
@@ -130,8 +141,10 @@ export class CharactersService {
       planet.characters.splice(characterIndex, 1);
     }
 
-    await this.charactersRepository.updateOne(characterId, character);
-    await this.planetsRepository.updateOne(planetId, planet);
+    await transaction(async (session) => {
+      await this.charactersRepository.updateOne(characterId, character, session);
+      await this.planetsRepository.updateOne(planetId, planet, session);
+    }, this.connection);
 
     return this.charactersRepository.findById(characterId);
   }

@@ -45,6 +45,31 @@ export class PlanetsService {
     return planet;
   }
 
+  async deleteCharacter(planetId: string, characterId: string) {
+    const planet = await this.planetsRepository.findById(planetId);
+    if (!planet) {
+      throw new HttpException('No such a planet.', 400);
+    }
+
+    const character = await this.charactersRepository.findById(characterId);
+    if (!character) {
+      throw new HttpException('No such a character.', 400);
+    }
+
+    const characterIndex = planet.characters.findIndex((element) => element._id.equals(characterId));
+    if (characterIndex < 0) {
+      throw new HttpException('No such a character for this planet.', 400);
+    }
+
+    planet.characters.splice(characterIndex, 1);
+    character.planet = null;
+
+    await this.planetsRepository.updateOne(planetId, planet);
+    await this.charactersRepository.updateOne(characterId, character);
+
+    return planet;
+  }
+
   updateOne(planetId: string, updateOnePlanetDto: UpdateOnePlanetDto) {
     return this.planetsRepository.updateOne(planetId, updateOnePlanetDto);
   }

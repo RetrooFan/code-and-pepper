@@ -1,4 +1,6 @@
 import { HttpException, Injectable } from '@nestjs/common';
+import { InjectConnection } from '@nestjs/mongoose';
+import { Connection } from 'mongoose';
 
 import { CharactersRepository } from '../../repositories/characters.repository';
 import { SaveCharacterDto } from '../../dtos/saveCharacter.dto';
@@ -7,8 +9,6 @@ import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { EpisodesRepository } from '../../repositories/episodes.repository';
 import { PlanetsRepository } from '../../repositories/planets.repository';
 import { transaction } from '../../utils/transaction';
-import { InjectConnection } from '@nestjs/mongoose';
-import { Connection } from 'mongoose';
 
 @Injectable()
 export class CharactersService {

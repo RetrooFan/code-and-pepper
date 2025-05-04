@@ -1,4 +1,6 @@
 import { HttpException, Injectable } from '@nestjs/common';
+import { InjectConnection } from '@nestjs/mongoose';
+import { Connection } from 'mongoose';
 
 import { PlanetsRepository } from '../../repositories/planets.repository';
 import { SavePlanetDto } from '../../dtos/savePlanet.dto';
@@ -6,8 +8,6 @@ import { UpdateOnePlanetDto } from '../../dtos/updateOnePlanet.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { CharactersRepository } from '../../repositories/characters.repository';
 import { transaction } from '../../utils/transaction';
-import { InjectConnection } from '@nestjs/mongoose';
-import { Connection } from 'mongoose';
 
 @Injectable()
 export class PlanetsService {

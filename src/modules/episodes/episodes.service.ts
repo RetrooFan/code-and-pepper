@@ -21,8 +21,9 @@ export class EpisodesService {
     return this.episodesRepository.save(saveEpisodeDto);
   }
 
-  updateOne(episodeId: string, updateOneEpisodeDto: UpdateOneEpisodeDto) {
-    return this.episodesRepository.updateOne(episodeId, updateOneEpisodeDto);
+  async updateOne(episodeId: string, updateOneEpisodeDto: UpdateOneEpisodeDto) {
+    await this.episodesRepository.updateOne(episodeId, updateOneEpisodeDto);
+    return this.episodesRepository.findById(episodeId);
   }
 
   deleteOne(episodeId: string) {

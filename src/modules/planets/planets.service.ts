@@ -21,8 +21,9 @@ export class PlanetsService {
     return this.planetsRepository.save(savePlanetDto);
   }
 
-  updateOne(planetId: string, updateOnePlanetDto: UpdateOnePlanetDto) {
-    return this.planetsRepository.updateOne(planetId, updateOnePlanetDto);
+  async updateOne(planetId: string, updateOnePlanetDto: UpdateOnePlanetDto) {
+    await this.planetsRepository.updateOne(planetId, updateOnePlanetDto);
+    return this.planetsRepository.findById(planetId);
   }
 
   deleteOne(planetId: string) {

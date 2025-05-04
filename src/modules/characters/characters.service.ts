@@ -23,8 +23,9 @@ export class CharactersService {
     return this.charactersRepository.save(saveCharacterDto);
   }
 
-  updateOne(characterId: string, updateOneCharacterDto: UpdateOneCharacterDto) {
-    return this.charactersRepository.updateOne(characterId, updateOneCharacterDto);
+  async updateOne(characterId: string, updateOneCharacterDto: UpdateOneCharacterDto) {
+    await this.charactersRepository.updateOne(characterId, updateOneCharacterDto);
+    return this.planetsRepository.findById(characterId);
   }
 
   deleteOne(characterId: string) {

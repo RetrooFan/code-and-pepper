@@ -64,7 +64,6 @@ export class CharactersService {
     }
 
     const characterIndex = episode.characters.findIndex((element) => element._id.equals(characterId));
-
     character.episodes.splice(episodeIndex, 1);
     if (characterIndex >= 0) {
       episode.characters.splice(characterIndex, 1);
@@ -116,7 +115,6 @@ export class CharactersService {
     }
 
     const characterIndex = planet.characters.findIndex((element) => element._id.equals(characterId));
-
     character.planet = null;
     if (characterIndex >= 0) {
       planet.characters.splice(characterIndex, 1);

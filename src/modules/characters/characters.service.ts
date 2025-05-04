@@ -118,7 +118,9 @@ export class CharactersService {
     const characterIndex = planet.characters.findIndex((element) => element._id.equals(characterId));
 
     character.planet = null;
-    planet.characters.splice(characterIndex, 1);
+    if (characterIndex >= 0) {
+      planet.characters.splice(characterIndex, 1);
+    }
 
     await this.charactersRepository.updateOne(characterId, character);
     await this.planetsRepository.updateOne(planetId, planet);

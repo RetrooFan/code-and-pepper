@@ -38,10 +38,6 @@ export class CharactersService {
       throw new HttpException('Episode already added for this character.', 400);
     }
 
-    if (episode.characters.find((element) => element._id.equals(character._id))) {
-      throw new HttpException('Character already added for this episode.', 400);
-    }
-
     character.episodes.push(episode);
     episode.characters.push(character);
 
@@ -64,10 +60,6 @@ export class CharactersService {
 
     if (character.planet) {
       throw new HttpException('Planet already added for this character.', 400);
-    }
-
-    if (planet.characters.find((element) => element._id.equals(character._id))) {
-      throw new HttpException('Character already added for this planet.', 400);
     }
 
     character.planet = planet;

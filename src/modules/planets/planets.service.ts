@@ -36,10 +36,6 @@ export class PlanetsService {
       throw new HttpException('Character already added for this planet.', 400);
     }
 
-    if (character.planet) {
-      throw new HttpException('Planet already added for this character.', 400);
-    }
-
     planet.characters.push(character);
     character.planet = planet;
 

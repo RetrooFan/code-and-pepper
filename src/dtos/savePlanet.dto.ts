@@ -7,6 +7,6 @@ export class SavePlanetDto extends SaveDto {
   @ApiProperty()
   @IsString()
   @MinLength(1)
-  @MaxLength(32)
+  @MaxLength(16)
   name: string;
 }

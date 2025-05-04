@@ -7,6 +7,6 @@ export class SaveEpisodeDto extends SaveDto {
   @ApiProperty()
   @IsString()
   @MinLength(1)
-  @MaxLength(32)
+  @MaxLength(64)
   name: string;
 }

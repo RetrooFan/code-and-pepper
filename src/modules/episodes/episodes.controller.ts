@@ -20,16 +20,6 @@ export class EpisodesController {
     return this.episodesService.save(saveEpisodeDto);
   }
 
-  @Post(':id/characters')
-  addCharacter(@Param() episodeIdDto: IdDto, @Body() characterIdDto: IdDto) {
-    return this.episodesService.addCharacter(episodeIdDto.id, characterIdDto.id);
-  }
-
-  @Delete(':id/characters/:id2')
-  deleteCharacter(@Param() idDto: IdDto) {
-    return this.episodesService.deleteCharacter(idDto.id, idDto.id2);
-  }
-
   @Put(':id')
   updateOne(@Param() idDto: IdDto, @Body() updateOneEpisodeDto: UpdateOneEpisodeDto) {
     return this.episodesService.updateOne(idDto.id, updateOneEpisodeDto);
@@ -38,5 +28,15 @@ export class EpisodesController {
   @Delete(':id')
   deleteOne(@Param() idDto: IdDto) {
     return this.episodesService.deleteOne(idDto.id);
+  }
+
+  @Post(':id/characters')
+  addCharacter(@Param() episodeIdDto: IdDto, @Body() characterIdDto: IdDto) {
+    return this.episodesService.addCharacter(episodeIdDto.id, characterIdDto.id);
+  }
+
+  @Delete(':id/characters/:id2')
+  deleteCharacter(@Param() idDto: IdDto) {
+    return this.episodesService.deleteCharacter(idDto.id, idDto.id2);
   }
 }

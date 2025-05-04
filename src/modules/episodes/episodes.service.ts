@@ -21,6 +21,14 @@ export class EpisodesService {
     return this.episodesRepository.save(saveEpisodeDto);
   }
 
+  updateOne(episodeId: string, updateOneEpisodeDto: UpdateOneEpisodeDto) {
+    return this.episodesRepository.updateOne(episodeId, updateOneEpisodeDto);
+  }
+
+  deleteOne(episodeId: string) {
+    return this.episodesRepository.deleteOne(episodeId);
+  }
+
   async addCharacter(episodeId: string, characterId: string) {
     const episode = await this.episodesRepository.findById(episodeId);
     if (!episode) {
@@ -71,13 +79,5 @@ export class EpisodesService {
     await this.charactersRepository.updateOne(characterId, character);
 
     return episode;
-  }
-
-  updateOne(episodeId: string, updateOneEpisodeDto: UpdateOneEpisodeDto) {
-    return this.episodesRepository.updateOne(episodeId, updateOneEpisodeDto);
-  }
-
-  deleteOne(episodeId: string) {
-    return this.episodesRepository.deleteOne(episodeId);
   }
 }

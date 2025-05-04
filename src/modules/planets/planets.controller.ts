@@ -20,16 +20,6 @@ export class PlanetsController {
     return this.planetsService.save(savePlanetDto);
   }
 
-  @Post(':id/characters')
-  addCharacter(@Param() planetIdDto: IdDto, @Body() characterIdDto: IdDto) {
-    return this.planetsService.addCharacter(planetIdDto.id, characterIdDto.id);
-  }
-
-  @Delete(':id/characters/:id2')
-  deleteCharacter(@Param() idDto: IdDto) {
-    return this.planetsService.deleteCharacter(idDto.id, idDto.id2);
-  }
-
   @Put(':id')
   updateOne(@Param() idDto: IdDto, @Body() updateOnePlanetDto: UpdateOnePlanetDto) {
     return this.planetsService.updateOne(idDto.id, updateOnePlanetDto);
@@ -38,5 +28,15 @@ export class PlanetsController {
   @Delete(':id')
   deleteOne(@Param() idDto: IdDto) {
     return this.planetsService.deleteOne(idDto.id);
+  }
+
+  @Post(':id/characters')
+  addCharacter(@Param() planetIdDto: IdDto, @Body() characterIdDto: IdDto) {
+    return this.planetsService.addCharacter(planetIdDto.id, characterIdDto.id);
+  }
+
+  @Delete(':id/characters/:id2')
+  deleteCharacter(@Param() idDto: IdDto) {
+    return this.planetsService.deleteCharacter(idDto.id, idDto.id2);
   }
 }

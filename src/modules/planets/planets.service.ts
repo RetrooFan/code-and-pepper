@@ -21,6 +21,14 @@ export class PlanetsService {
     return this.planetsRepository.save(savePlanetDto);
   }
 
+  updateOne(planetId: string, updateOnePlanetDto: UpdateOnePlanetDto) {
+    return this.planetsRepository.updateOne(planetId, updateOnePlanetDto);
+  }
+
+  deleteOne(planetId: string) {
+    return this.planetsRepository.deleteOne(planetId);
+  }
+
   async addCharacter(planetId: string, characterId: string) {
     const planet = await this.planetsRepository.findById(planetId);
     if (!planet) {
@@ -68,13 +76,5 @@ export class PlanetsService {
     await this.charactersRepository.updateOne(characterId, character);
 
     return planet;
-  }
-
-  updateOne(planetId: string, updateOnePlanetDto: UpdateOnePlanetDto) {
-    return this.planetsRepository.updateOne(planetId, updateOnePlanetDto);
-  }
-
-  deleteOne(planetId: string) {
-    return this.planetsRepository.deleteOne(planetId);
   }
 }

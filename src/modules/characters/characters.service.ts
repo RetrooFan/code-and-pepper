@@ -23,6 +23,14 @@ export class CharactersService {
     return this.charactersRepository.save(saveCharacterDto);
   }
 
+  updateOne(characterId: string, updateOneCharacterDto: UpdateOneCharacterDto) {
+    return this.charactersRepository.updateOne(characterId, updateOneCharacterDto);
+  }
+
+  deleteOne(characterId: string) {
+    return this.charactersRepository.deleteOne(characterId);
+  }
+
   async addEpisode(characterId: string, episodeId: string) {
     const character = await this.charactersRepository.findById(characterId);
     if (!character) {
@@ -43,6 +51,30 @@ export class CharactersService {
 
     await this.charactersRepository.updateOne(characterId, character);
     await this.episodesRepository.updateOne(episodeId, episode);
+
+    return character;
+  }
+
+  async addPlanet(characterId: string, planetId: string) {
+    const character = await this.charactersRepository.findById(characterId);
+    if (!character) {
+      throw new HttpException('No such a character.', 400);
+    }
+
+    const planet = await this.planetsRepository.findById(planetId);
+    if (!planet) {
+      throw new HttpException('No such a planet.', 400);
+    }
+
+    if (character.planet) {
+      throw new HttpException('Planet already added for this character.', 400);
+    }
+
+    character.planet = planet;
+    planet.characters.push(character);
+
+    await this.charactersRepository.updateOne(characterId, character);
+    await this.planetsRepository.updateOne(planetId, planet);
 
     return character;
   }
@@ -75,30 +107,6 @@ export class CharactersService {
     return character;
   }
 
-  async addPlanet(characterId: string, planetId: string) {
-    const character = await this.charactersRepository.findById(characterId);
-    if (!character) {
-      throw new HttpException('No such a character.', 400);
-    }
-
-    const planet = await this.planetsRepository.findById(planetId);
-    if (!planet) {
-      throw new HttpException('No such a planet.', 400);
-    }
-
-    if (character.planet) {
-      throw new HttpException('Planet already added for this character.', 400);
-    }
-
-    character.planet = planet;
-    planet.characters.push(character);
-
-    await this.charactersRepository.updateOne(characterId, character);
-    await this.planetsRepository.updateOne(planetId, planet);
-
-    return character;
-  }
-
   async deletePlanet(characterId: string, planetId: string) {
     const character = await this.charactersRepository.findById(characterId);
     if (!character) {
@@ -124,13 +132,5 @@ export class CharactersService {
     await this.planetsRepository.updateOne(planetId, planet);
 
     return character;
-  }
-
-  updateOne(characterId: string, updateOneCharacterDto: UpdateOneCharacterDto) {
-    return this.charactersRepository.updateOne(characterId, updateOneCharacterDto);
-  }
-
-  deleteOne(characterId: string) {
-    return this.charactersRepository.deleteOne(characterId);
   }
 }

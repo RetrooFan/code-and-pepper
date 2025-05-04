@@ -1,11 +1,4 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, Query } from '@nestjs/common';
-
-import { PlanetsService } from './planets.service';
-import { SavePlanetDto } from '../../dtos/savePlanet.dto';
-import { UpdateOnePlanetDto } from '../../dtos/updateOnePlanet.dto';
-import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
-import { IdDto } from '../../dtos/id.dto';
-import { IdDto2 } from '../../dtos/id2.dto';
 import {
   ApiBadRequestResponse,
   ApiConflictResponse,
@@ -14,6 +7,13 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
 } from '@nestjs/swagger';
+
+import { PlanetsService } from './planets.service';
+import { SavePlanetDto } from '../../dtos/savePlanet.dto';
+import { UpdateOnePlanetDto } from '../../dtos/updateOnePlanet.dto';
+import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
+import { IdDto } from '../../dtos/id.dto';
+import { IdDto2 } from '../../dtos/id2.dto';
 
 @Controller('planets')
 export class PlanetsController {

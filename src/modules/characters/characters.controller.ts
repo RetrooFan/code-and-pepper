@@ -1,11 +1,4 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, Query } from '@nestjs/common';
-
-import { CharactersService } from './characters.service';
-import { SaveCharacterDto } from '../../dtos/saveCharacter.dto';
-import { UpdateOneCharacterDto } from '../../dtos/updateOneCharacter.dto';
-import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
-import { IdDto } from '../../dtos/id.dto';
-import { IdDto2 } from '../../dtos/id2.dto';
 import {
   ApiBadRequestResponse,
   ApiConflictResponse,
@@ -14,6 +7,13 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
 } from '@nestjs/swagger';
+
+import { CharactersService } from './characters.service';
+import { SaveCharacterDto } from '../../dtos/saveCharacter.dto';
+import { UpdateOneCharacterDto } from '../../dtos/updateOneCharacter.dto';
+import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
+import { IdDto } from '../../dtos/id.dto';
+import { IdDto2 } from '../../dtos/id2.dto';
 
 @Controller('characters')
 export class CharactersController {

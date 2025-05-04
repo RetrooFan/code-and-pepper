@@ -1,4 +1,6 @@
+import { INestApplication } from '@nestjs/common';
 import { connections } from 'mongoose';
+import { App } from 'supertest/types';
 
 afterEach(async () => {
   while (connections.length) {
@@ -7,5 +9,5 @@ afterEach(async () => {
 });
 
 afterAll(async () => {
-  await (global.app as { close: () => Promise<boolean> }).close();
+  await (global.app as INestApplication<App>).close();
 });

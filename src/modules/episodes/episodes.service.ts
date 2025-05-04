@@ -47,10 +47,10 @@ export class EpisodesService {
     episode.characters.push(character);
     character.episodes.push(episode);
 
-    await this.episodesRepository.updateOne(episodeId, episode);
+    const result = await this.episodesRepository.updateOne(episodeId, episode);
     await this.charactersRepository.updateOne(characterId, character);
 
-    return episode;
+    return result;
   }
 
   async deleteCharacter(episodeId: string, characterId: string) {
@@ -75,9 +75,9 @@ export class EpisodesService {
       character.episodes.splice(episodeIndex, 1);
     }
 
-    await this.episodesRepository.updateOne(episodeId, episode);
+    const result = await this.episodesRepository.updateOne(episodeId, episode);
     await this.charactersRepository.updateOne(characterId, character);
 
-    return episode;
+    return result;
   }
 }

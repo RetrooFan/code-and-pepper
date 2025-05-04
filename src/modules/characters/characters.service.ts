@@ -58,20 +58,20 @@ export class CharactersService {
       throw new HttpException('No such an episode.', 400);
     }
 
-    const episodeIndex = character.episodes.findIndex((element) => element._id.equals(episode._id));
+    const episodeIndex = character.episodes.findIndex((element) => element._id.equals(episodeId));
     if (episodeIndex < 0) {
       throw new HttpException('No such an episode for this character.', 400);
     }
 
-    const characterIndex = episode.characters.findIndex((element) => element._id.equals(character._id));
+    const characterIndex = episode.characters.findIndex((element) => element._id.equals(characterId));
 
     character.episodes.splice(episodeIndex, 1);
     if (characterIndex >= 0) {
       episode.characters.splice(characterIndex, 1);
     }
 
-    await this.charactersRepository.updateOne(character._id.toString(), character);
-    await this.episodesRepository.updateOne(episode._id.toString(), episode);
+    await this.charactersRepository.updateOne(characterId, character);
+    await this.episodesRepository.updateOne(episodeId, episode);
 
     return character;
   }

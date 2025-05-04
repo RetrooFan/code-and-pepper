@@ -6,7 +6,14 @@ import { UpdateOneEpisodeDto } from '../../dtos/updateOneEpisode.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { IdDto } from '../../dtos/id.dto';
 import { IdDto2 } from '../../dtos/id2.dto';
-import { ApiConflictResponse, ApiCreatedResponse, ApiNoContentResponse, ApiNotFoundResponse } from '@nestjs/swagger';
+import {
+  ApiBadRequestResponse,
+  ApiConflictResponse,
+  ApiCreatedResponse,
+  ApiNoContentResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+} from '@nestjs/swagger';
 
 @Controller('episodes')
 export class EpisodesController {
@@ -18,11 +25,15 @@ export class EpisodesController {
   }
 
   @HttpCode(HttpStatus.CREATED)
+  @ApiCreatedResponse()
+  @ApiBadRequestResponse()
   @Post()
   save(@Body() saveEpisodeDto: SaveEpisodeDto) {
     return this.episodesService.save(saveEpisodeDto);
   }
 
+  @ApiOkResponse()
+  @ApiBadRequestResponse()
   @Put(':id')
   updateOne(@Param() idDto: IdDto, @Body() updateOneEpisodeDto: UpdateOneEpisodeDto) {
     return this.episodesService.updateOne(idDto.id, updateOneEpisodeDto);

@@ -6,7 +6,14 @@ import { UpdateOneCharacterDto } from '../../dtos/updateOneCharacter.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { IdDto } from '../../dtos/id.dto';
 import { IdDto2 } from '../../dtos/id2.dto';
-import { ApiConflictResponse, ApiCreatedResponse, ApiNoContentResponse, ApiNotFoundResponse } from '@nestjs/swagger';
+import {
+  ApiBadRequestResponse,
+  ApiConflictResponse,
+  ApiCreatedResponse,
+  ApiNoContentResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+} from '@nestjs/swagger';
 
 @Controller('characters')
 export class CharactersController {
@@ -18,11 +25,15 @@ export class CharactersController {
   }
 
   @HttpCode(HttpStatus.CREATED)
+  @ApiCreatedResponse()
+  @ApiBadRequestResponse()
   @Post()
   save(@Body() saveCharacterDto: SaveCharacterDto) {
     return this.charactersService.save(saveCharacterDto);
   }
 
+  @ApiOkResponse()
+  @ApiBadRequestResponse()
   @Put(':id')
   updateOne(@Param() idDto: IdDto, @Body() updateOneCharacterDto: UpdateOneCharacterDto) {
     return this.charactersService.updateOne(idDto.id, updateOneCharacterDto);

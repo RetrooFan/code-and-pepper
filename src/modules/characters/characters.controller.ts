@@ -25,6 +25,11 @@ export class CharactersController {
     return this.charactersService.addEpisode(characterIdDto.id, episodeIdDto.id);
   }
 
+  @Delete(':id/episodes/:id2')
+  deleteEpisode(@Param() idDto: IdDto) {
+    return this.charactersService.deleteEpisode(idDto.id, idDto.id2);
+  }
+
   @Post(':id/planet')
   addPlanet(@Param() characterIdDto: IdDto, @Body() planetIdDto: IdDto) {
     return this.charactersService.addPlanet(characterIdDto.id, planetIdDto.id);
@@ -38,10 +43,5 @@ export class CharactersController {
   @Delete(':id')
   deleteOne(@Param() idDto: IdDto) {
     return this.charactersService.deleteOne(idDto.id);
-  }
-
-  @Delete(':id/episodes/:id2')
-  deleteEpisode(@Param() idDto: IdDto) {
-    return this.charactersService.deleteEpisode(idDto.id, idDto.id2);
   }
 }

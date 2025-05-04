@@ -32,15 +32,15 @@ export class EpisodesService {
       throw new HttpException('No such a character.', 400);
     }
 
-    if (episode.characters.find((element) => element._id.equals(character._id))) {
+    if (episode.characters.find((element) => element._id.equals(characterId))) {
       throw new HttpException('Character already added for this episode.', 400);
     }
 
     episode.characters.push(character);
     character.episodes.push(episode);
 
-    await this.episodesRepository.updateOne(episode._id.toString(), episode);
-    await this.charactersRepository.updateOne(character._id.toString(), character);
+    await this.episodesRepository.updateOne(episodeId, episode);
+    await this.charactersRepository.updateOne(characterId, character);
 
     return episode;
   }

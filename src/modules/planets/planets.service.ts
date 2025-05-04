@@ -32,15 +32,15 @@ export class PlanetsService {
       throw new HttpException('No such a character.', 400);
     }
 
-    if (planet.characters.find((element) => element._id.equals(character._id))) {
+    if (planet.characters.find((element) => element._id.equals(characterId))) {
       throw new HttpException('Character already added for this planet.', 400);
     }
 
     planet.characters.push(character);
     character.planet = planet;
 
-    await this.planetsRepository.updateOne(planet._id.toString(), planet);
-    await this.charactersRepository.updateOne(character._id.toString(), character);
+    await this.planetsRepository.updateOne(planetId, planet);
+    await this.charactersRepository.updateOne(characterId, character);
 
     return planet;
   }

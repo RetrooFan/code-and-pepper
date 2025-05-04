@@ -34,15 +34,15 @@ export class CharactersService {
       throw new HttpException('No such an episode.', 400);
     }
 
-    if (character.episodes.find((element) => element._id.equals(episode._id))) {
+    if (character.episodes.find((element) => element._id.equals(episodeId))) {
       throw new HttpException('Episode already added for this character.', 400);
     }
 
     character.episodes.push(episode);
     episode.characters.push(character);
 
-    await this.charactersRepository.updateOne(character._id.toString(), character);
-    await this.episodesRepository.updateOne(episode._id.toString(), episode);
+    await this.charactersRepository.updateOne(characterId, character);
+    await this.episodesRepository.updateOne(episodeId, episode);
 
     return character;
   }
@@ -94,8 +94,8 @@ export class CharactersService {
     character.planet = planet;
     planet.characters.push(character);
 
-    await this.charactersRepository.updateOne(character._id.toString(), character);
-    await this.planetsRepository.updateOne(planet._id.toString(), planet);
+    await this.charactersRepository.updateOne(characterId, character);
+    await this.planetsRepository.updateOne(planetId, planet);
 
     return character;
   }

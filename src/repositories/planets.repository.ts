@@ -32,11 +32,11 @@ export class PlanetsRepository extends RepositoryAbstract<Planet, PlanetDocument
     const planet = await this.findById(_id);
 
     if (!planet) {
-      throw new HttpException('No such a planet.', 400);
+      throw new HttpException('No such a planet.', 404);
     }
 
     if (planet.characters.length) {
-      throw new HttpException('Planet has assigned planets.', 400);
+      throw new HttpException('Planet has assigned characters.', 409);
     }
 
     return super.deleteOne(_id, session);

@@ -32,11 +32,11 @@ export class EpisodesRepository extends RepositoryAbstract<Episode, EpisodeDocum
     const episode = await this.findById(_id);
 
     if (!episode) {
-      throw new HttpException('No such an episode.', 400);
+      throw new HttpException('No such an episode.', 404);
     }
 
     if (episode.characters.length) {
-      throw new HttpException('Episode has assigned characters.', 400);
+      throw new HttpException('Episode has assigned characters.', 409);
     }
 
     return super.deleteOne(_id, session);

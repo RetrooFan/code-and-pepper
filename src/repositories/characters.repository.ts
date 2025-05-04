@@ -37,15 +37,15 @@ export class CharactersRepository extends RepositoryAbstract<Character, Characte
     const character = await this.findById(_id);
 
     if (!character) {
-      throw new HttpException('No such a character.', 400);
+      throw new HttpException('No such a character.', 404);
     }
 
     if (character.episodes.length) {
-      throw new HttpException('Character has assigned episodes.', 400);
+      throw new HttpException('Character has assigned episodes.', 409);
     }
 
     if (character.planet) {
-      throw new HttpException('Character has assigned planet.', 400);
+      throw new HttpException('Character has an assigned planet.', 409);
     }
 
     return super.deleteOne(_id, session);

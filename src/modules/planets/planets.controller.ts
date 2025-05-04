@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, Query } from '@nestjs/common';
 
 import { PlanetsService } from './planets.service';
 import { SavePlanetDto } from '../../dtos/savePlanet.dto';
@@ -16,6 +16,7 @@ export class PlanetsController {
     return this.planetsService.find(paginationQueryDto);
   }
 
+  @HttpCode(HttpStatus.CREATED)
   @Post()
   save(@Body() savePlanetDto: SavePlanetDto) {
     return this.planetsService.save(savePlanetDto);
@@ -26,16 +27,19 @@ export class PlanetsController {
     return this.planetsService.updateOne(idDto.id, updateOnePlanetDto);
   }
 
+  @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':id')
   deleteOne(@Param() idDto: IdDto) {
     return this.planetsService.deleteOne(idDto.id);
   }
 
+  @HttpCode(HttpStatus.CREATED)
   @Post(':id/characters')
   addCharacter(@Param() planetIdDto: IdDto, @Body() characterIdDto: IdDto) {
     return this.planetsService.addCharacter(planetIdDto.id, characterIdDto.id);
   }
 
+  @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':id/characters/:id2')
   deleteCharacter(@Param() idDto: IdDto2) {
     return this.planetsService.deleteCharacter(idDto.id, idDto.id2);

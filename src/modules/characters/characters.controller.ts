@@ -6,6 +6,7 @@ import { UpdateOneCharacterDto } from '../../dtos/updateOneCharacter.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { IdDto } from '../../dtos/id.dto';
 import { IdDto2 } from '../../dtos/id2.dto';
+import { ApiConflictResponse, ApiNoContentResponse, ApiNotFoundResponse } from '@nestjs/swagger';
 
 @Controller('characters')
 export class CharactersController {
@@ -28,6 +29,9 @@ export class CharactersController {
   }
 
   @HttpCode(HttpStatus.NO_CONTENT)
+  @ApiNoContentResponse()
+  @ApiNotFoundResponse()
+  @ApiConflictResponse()
   @Delete(':id')
   deleteOne(@Param() idDto: IdDto) {
     return this.charactersService.deleteOne(idDto.id);

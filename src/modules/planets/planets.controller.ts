@@ -6,7 +6,7 @@ import { UpdateOnePlanetDto } from '../../dtos/updateOnePlanet.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { IdDto } from '../../dtos/id.dto';
 import { IdDto2 } from '../../dtos/id2.dto';
-import { ApiConflictResponse, ApiNoContentResponse, ApiNotFoundResponse } from '@nestjs/swagger';
+import { ApiConflictResponse, ApiCreatedResponse, ApiNoContentResponse, ApiNotFoundResponse } from '@nestjs/swagger';
 
 @Controller('planets')
 export class PlanetsController {
@@ -38,6 +38,9 @@ export class PlanetsController {
   }
 
   @HttpCode(HttpStatus.CREATED)
+  @ApiCreatedResponse()
+  @ApiNotFoundResponse()
+  @ApiConflictResponse()
   @Post(':id/characters')
   addCharacter(@Param() planetIdDto: IdDto, @Body() characterIdDto: IdDto) {
     return this.planetsService.addCharacter(planetIdDto.id, characterIdDto.id);

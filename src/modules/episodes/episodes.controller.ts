@@ -6,7 +6,7 @@ import { UpdateOneEpisodeDto } from '../../dtos/updateOneEpisode.dto';
 import { PaginationQueryDto } from '../../dtos/pagination.query.dto';
 import { IdDto } from '../../dtos/id.dto';
 import { IdDto2 } from '../../dtos/id2.dto';
-import { ApiConflictResponse, ApiNoContentResponse, ApiNotFoundResponse } from '@nestjs/swagger';
+import { ApiConflictResponse, ApiCreatedResponse, ApiNoContentResponse, ApiNotFoundResponse } from '@nestjs/swagger';
 
 @Controller('episodes')
 export class EpisodesController {
@@ -38,6 +38,9 @@ export class EpisodesController {
   }
 
   @HttpCode(HttpStatus.CREATED)
+  @ApiCreatedResponse()
+  @ApiNotFoundResponse()
+  @ApiConflictResponse()
   @Post(':id/characters')
   addCharacter(@Param() episodeIdDto: IdDto, @Body() characterIdDto: IdDto) {
     return this.episodesService.addCharacter(episodeIdDto.id, characterIdDto.id);

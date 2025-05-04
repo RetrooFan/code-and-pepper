@@ -34,16 +34,16 @@ export class CharactersService {
   async addEpisode(characterId: string, episodeId: string) {
     const character = await this.charactersRepository.findById(characterId);
     if (!character) {
-      throw new HttpException('No such a character.', 400);
+      throw new HttpException('No such a character.', 404);
     }
 
     const episode = await this.episodesRepository.findById(episodeId);
     if (!episode) {
-      throw new HttpException('No such an episode.', 400);
+      throw new HttpException('No such an episode.', 404);
     }
 
     if (character.episodes.find((element) => element._id.equals(episodeId))) {
-      throw new HttpException('Episode already added for this character.', 400);
+      throw new HttpException('Episode already added for this character.', 409);
     }
 
     character.episodes.push(episode);
@@ -58,16 +58,16 @@ export class CharactersService {
   async addPlanet(characterId: string, planetId: string) {
     const character = await this.charactersRepository.findById(characterId);
     if (!character) {
-      throw new HttpException('No such a character.', 400);
+      throw new HttpException('No such a character.', 404);
     }
 
     const planet = await this.planetsRepository.findById(planetId);
     if (!planet) {
-      throw new HttpException('No such a planet.', 400);
+      throw new HttpException('No such a planet.', 404);
     }
 
     if (character.planet) {
-      throw new HttpException('Planet already added for this character.', 400);
+      throw new HttpException('Planet already added for this character.', 409);
     }
 
     character.planet = planet;
@@ -82,17 +82,17 @@ export class CharactersService {
   async deleteEpisode(characterId: string, episodeId: string) {
     const character = await this.charactersRepository.findById(characterId);
     if (!character) {
-      throw new HttpException('No such a character.', 400);
+      throw new HttpException('No such a character.', 404);
     }
 
     const episode = await this.episodesRepository.findById(episodeId);
     if (!episode) {
-      throw new HttpException('No such an episode.', 400);
+      throw new HttpException('No such an episode.', 404);
     }
 
     const episodeIndex = character.episodes.findIndex((element) => element._id.equals(episodeId));
     if (episodeIndex < 0) {
-      throw new HttpException('No such an episode for this character.', 400);
+      throw new HttpException('No such an episode for this character.', 404);
     }
 
     const characterIndex = episode.characters.findIndex((element) => element._id.equals(characterId));
@@ -110,16 +110,16 @@ export class CharactersService {
   async deletePlanet(characterId: string, planetId: string) {
     const character = await this.charactersRepository.findById(characterId);
     if (!character) {
-      throw new HttpException('No such a character.', 400);
+      throw new HttpException('No such a character.', 404);
     }
 
     const planet = await this.planetsRepository.findById(planetId);
     if (!planet) {
-      throw new HttpException('No such a planet.', 400);
+      throw new HttpException('No such a planet.', 404);
     }
 
     if (!character.planet?._id.equals(planetId)) {
-      throw new HttpException('No such a planet for this character.', 400);
+      throw new HttpException('No such a planet for this character.', 404);
     }
 
     const characterIndex = planet.characters.findIndex((element) => element._id.equals(characterId));

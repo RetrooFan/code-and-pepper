@@ -32,16 +32,16 @@ export class PlanetsService {
   async addCharacter(planetId: string, characterId: string) {
     const planet = await this.planetsRepository.findById(planetId);
     if (!planet) {
-      throw new HttpException('No such a planet.', 400);
+      throw new HttpException('No such a planet.', 404);
     }
 
     const character = await this.charactersRepository.findById(characterId);
     if (!character) {
-      throw new HttpException('No such a character.', 400);
+      throw new HttpException('No such a character.', 404);
     }
 
     if (planet.characters.find((element) => element._id.equals(characterId))) {
-      throw new HttpException('Character already added for this planet.', 400);
+      throw new HttpException('Character already added for this planet.', 409);
     }
 
     planet.characters.push(character);
@@ -56,17 +56,17 @@ export class PlanetsService {
   async deleteCharacter(planetId: string, characterId: string) {
     const planet = await this.planetsRepository.findById(planetId);
     if (!planet) {
-      throw new HttpException('No such a planet.', 400);
+      throw new HttpException('No such a planet.', 404);
     }
 
     const character = await this.charactersRepository.findById(characterId);
     if (!character) {
-      throw new HttpException('No such a character.', 400);
+      throw new HttpException('No such a character.', 404);
     }
 
     const characterIndex = planet.characters.findIndex((element) => element._id.equals(characterId));
     if (characterIndex < 0) {
-      throw new HttpException('No such a character for this planet.', 400);
+      throw new HttpException('No such a character for this planet.', 404);
     }
 
     planet.characters.splice(characterIndex, 1);

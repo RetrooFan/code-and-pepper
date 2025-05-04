@@ -32,16 +32,16 @@ export class EpisodesService {
   async addCharacter(episodeId: string, characterId: string) {
     const episode = await this.episodesRepository.findById(episodeId);
     if (!episode) {
-      throw new HttpException('No such an episode.', 400);
+      throw new HttpException('No such an episode.', 404);
     }
 
     const character = await this.charactersRepository.findById(characterId);
     if (!character) {
-      throw new HttpException('No such a character.', 400);
+      throw new HttpException('No such a character.', 404);
     }
 
     if (episode.characters.find((element) => element._id.equals(characterId))) {
-      throw new HttpException('Character already added for this episode.', 400);
+      throw new HttpException('Character already added for this episode.', 409);
     }
 
     episode.characters.push(character);
@@ -56,17 +56,17 @@ export class EpisodesService {
   async deleteCharacter(episodeId: string, characterId: string) {
     const episode = await this.episodesRepository.findById(episodeId);
     if (!episode) {
-      throw new HttpException('No such an episode.', 400);
+      throw new HttpException('No such an episode.', 404);
     }
 
     const character = await this.charactersRepository.findById(characterId);
     if (!character) {
-      throw new HttpException('No such a character.', 400);
+      throw new HttpException('No such a character.', 404);
     }
 
     const characterIndex = episode.characters.findIndex((element) => element._id.equals(characterId));
     if (characterIndex < 0) {
-      throw new HttpException('No such a character for this episode.', 400);
+      throw new HttpException('No such a character for this episode.', 404);
     }
 
     const episodeIndex = episode.characters.findIndex((element) => element._id.equals(characterId));

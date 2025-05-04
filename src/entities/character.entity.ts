@@ -17,7 +17,7 @@ export class Character {
   episodes: Episode[];
 
   @Prop({ type: SchemaTypes.ObjectId })
-  planet: Planet;
+  planet: Planet | null;
 }
 
 export const characterSchema = SchemaFactory.createForClass(Character);

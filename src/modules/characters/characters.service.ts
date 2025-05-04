@@ -100,6 +100,32 @@ export class CharactersService {
     return character;
   }
 
+  async deletePlanet(characterId: string, planetId: string) {
+    const character = await this.charactersRepository.findById(characterId);
+    if (!character) {
+      throw new HttpException('No such a character.', 400);
+    }
+
+    const planet = await this.planetsRepository.findById(planetId);
+    if (!planet) {
+      throw new HttpException('No such a planet.', 400);
+    }
+
+    if (!character.planet?._id.equals(planetId)) {
+      throw new HttpException('No such a planet for this character.', 400);
+    }
+
+    const characterIndex = planet.characters.findIndex((element) => element._id.equals(characterId));
+
+    character.planet = null;
+    planet.characters.splice(characterIndex, 1);
+
+    await this.charactersRepository.updateOne(characterId, character);
+    await this.planetsRepository.updateOne(planetId, planet);
+
+    return character;
+  }
+
   updateOne(characterId: string, updateOneCharacterDto: UpdateOneCharacterDto) {
     return this.charactersRepository.updateOne(characterId, updateOneCharacterDto);
   }

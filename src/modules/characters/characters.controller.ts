@@ -35,6 +35,11 @@ export class CharactersController {
     return this.charactersService.addPlanet(characterIdDto.id, planetIdDto.id);
   }
 
+  @Delete(':id/planet/:id2')
+  deletePlanet(@Param() idDto: IdDto) {
+    return this.charactersService.deletePlanet(idDto.id, idDto.id2);
+  }
+
   @Put(':id')
   updateOne(@Param() idDto: IdDto, @Body() updateOneCharacterDto: UpdateOneCharacterDto) {
     return this.charactersService.updateOne(idDto.id, updateOneCharacterDto);

@@ -47,6 +47,8 @@ export class EpisodesController {
   }
 
   @HttpCode(HttpStatus.NO_CONTENT)
+  @ApiNoContentResponse()
+  @ApiNotFoundResponse()
   @Delete(':id/characters/:id2')
   deleteCharacter(@Param() idDto: IdDto2) {
     return this.episodesService.deleteCharacter(idDto.id, idDto.id2);

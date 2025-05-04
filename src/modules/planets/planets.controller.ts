@@ -47,6 +47,8 @@ export class PlanetsController {
   }
 
   @HttpCode(HttpStatus.NO_CONTENT)
+  @ApiNoContentResponse()
+  @ApiNotFoundResponse()
   @Delete(':id/characters/:id2')
   deleteCharacter(@Param() idDto: IdDto2) {
     return this.planetsService.deleteCharacter(idDto.id, idDto.id2);

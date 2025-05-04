@@ -64,12 +64,11 @@ export class CharactersService {
     }
 
     const indexCharacter = episode.characters.findIndex((element) => element._id.equals(character._id));
-    if (indexCharacter < 0) {
-      throw new HttpException('No such a character for this episode.', 400);
-    }
 
     character.episodes.splice(indexEpisode, 1);
-    episode.characters.splice(indexCharacter, 1);
+    if (indexCharacter >= 0) {
+      episode.characters.splice(indexCharacter, 1);
+    }
 
     await this.charactersRepository.updateOne(character._id.toString(), character);
     await this.episodesRepository.updateOne(episode._id.toString(), episode);

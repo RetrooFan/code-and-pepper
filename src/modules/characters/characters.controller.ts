@@ -39,4 +39,9 @@ export class CharactersController {
   deleteOne(@Param() idDto: IdDto) {
     return this.charactersService.deleteOne(idDto.id);
   }
+
+  @Delete(':id/episodes/:id2')
+  deleteEpisode(@Param() idDto: IdDto) {
+    return this.charactersService.deleteEpisode(idDto.id, idDto.id2);
+  }
 }

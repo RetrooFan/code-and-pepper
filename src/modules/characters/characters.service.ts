@@ -78,4 +78,31 @@ export class CharactersService {
   deleteOne(characterId: string) {
     return this.charactersRepository.deleteOne(characterId);
   }
+
+  async deleteEpisode(characterId: string, episodeId: string) {
+    const character = await this.charactersRepository.findById(characterId);
+    if (!character) {
+      throw new HttpException('No such a character.', 400);
+    }
+
+    const episode = await this.episodesRepository.findById(episodeId);
+    if (!episode) {
+      throw new HttpException('No such an episode.', 400);
+    }
+
+    const indexEpisode = character.episodes.findIndex((element) => element._id.equals(episode._id));
+    if (indexEpisode < 0) {
+      throw new HttpException('No such an episode.', 400);
+    }
+
+    const indexCharacter = episode.characters.findIndex((element) => element._id.equals(character._id));
+
+    character.episodes.splice(indexEpisode, 1);
+    episode.characters.splice(indexCharacter, 1);
+
+    await this.charactersRepository.updateOne(character._id.toString(), character);
+    await this.episodesRepository.updateOne(episode._id.toString(), episode);
+
+    return character;
+  }
 }

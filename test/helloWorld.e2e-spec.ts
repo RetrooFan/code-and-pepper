@@ -15,7 +15,6 @@ describe('AppController (e2e)', () => {
     global.app = app;
 
     await app.init();
-
     api = request(app.getHttpServer());
   });
 

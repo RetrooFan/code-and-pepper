@@ -31,11 +31,7 @@ export class EpisodesRepository extends RepositoryAbstract<Episode, EpisodeDocum
   async deleteOne(_id: string, session?: ClientSession) {
     const episode = await this.findById(_id);
 
-    if (!episode) {
-      throw new HttpException('No such an episode.', 404);
-    }
-
-    if (episode.characters.length) {
+    if (episode?.characters.length) {
       throw new HttpException('Episode has assigned characters.', 409);
     }
 

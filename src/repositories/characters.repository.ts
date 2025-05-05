@@ -36,15 +36,11 @@ export class CharactersRepository extends RepositoryAbstract<Character, Characte
   async deleteOne(_id: string, session?: ClientSession) {
     const character = await this.findById(_id);
 
-    if (!character) {
-      throw new HttpException('No such a character.', 404);
-    }
-
-    if (character.episodes.length) {
+    if (character?.episodes.length) {
       throw new HttpException('Character has assigned episodes.', 409);
     }
 
-    if (character.planet) {
+    if (character?.planet) {
       throw new HttpException('Character has an assigned planet.', 409);
     }
 

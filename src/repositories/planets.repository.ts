@@ -31,11 +31,7 @@ export class PlanetsRepository extends RepositoryAbstract<Planet, PlanetDocument
   async deleteOne(_id: string, session?: ClientSession) {
     const planet = await this.findById(_id);
 
-    if (!planet) {
-      throw new HttpException('No such a planet.', 404);
-    }
-
-    if (planet.characters.length) {
+    if (planet?.characters.length) {
       throw new HttpException('Planet has assigned characters.', 409);
     }
 

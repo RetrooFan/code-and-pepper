@@ -64,32 +64,6 @@ export class CharactersService {
     return this.charactersRepository.findById(characterId);
   }
 
-  async addPlanet(characterId: string, planetId: string) {
-    const character = await this.charactersRepository.findById(characterId);
-    if (!character) {
-      throw new HttpException('No such a character.', 404);
-    }
-
-    const planet = await this.planetsRepository.findById(planetId);
-    if (!planet) {
-      throw new HttpException('No such a planet.', 404);
-    }
-
-    if (character.planet) {
-      throw new HttpException('Planet already added for this character.', 409);
-    }
-
-    character.planet = planet;
-    planet.characters.push(character);
-
-    await transaction(async (session) => {
-      await this.charactersRepository.updateOne(characterId, character, session);
-      await this.planetsRepository.updateOne(planetId, planet, session);
-    }, this.connection);
-
-    return this.charactersRepository.findById(characterId);
-  }
-
   async deleteEpisode(characterId: string, episodeId: string) {
     const character = await this.charactersRepository.findById(characterId);
     if (!character) {
@@ -115,6 +89,32 @@ export class CharactersService {
     await transaction(async (session) => {
       await this.charactersRepository.updateOne(characterId, character, session);
       await this.episodesRepository.updateOne(episodeId, episode, session);
+    }, this.connection);
+
+    return this.charactersRepository.findById(characterId);
+  }
+
+  async addPlanet(characterId: string, planetId: string) {
+    const character = await this.charactersRepository.findById(characterId);
+    if (!character) {
+      throw new HttpException('No such a character.', 404);
+    }
+
+    const planet = await this.planetsRepository.findById(planetId);
+    if (!planet) {
+      throw new HttpException('No such a planet.', 404);
+    }
+
+    if (character.planet) {
+      throw new HttpException('Planet already added for this character.', 409);
+    }
+
+    character.planet = planet;
+    planet.characters.push(character);
+
+    await transaction(async (session) => {
+      await this.charactersRepository.updateOne(characterId, character, session);
+      await this.planetsRepository.updateOne(planetId, planet, session);
     }, this.connection);
 
     return this.charactersRepository.findById(characterId);

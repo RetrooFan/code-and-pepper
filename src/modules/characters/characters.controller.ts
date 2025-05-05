@@ -57,6 +57,14 @@ export class CharactersController {
     return this.charactersService.addEpisode(characterIdDto.id, episodeIdDto.id);
   }
 
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @ApiNoContentResponse()
+  @ApiNotFoundResponse()
+  @Delete(':id/episodes/:id2')
+  deleteEpisode(@Param() idDto: IdDto2) {
+    return this.charactersService.deleteEpisode(idDto.id, idDto.id2);
+  }
+
   @HttpCode(HttpStatus.CREATED)
   @ApiCreatedResponse()
   @ApiNotFoundResponse()
@@ -64,14 +72,6 @@ export class CharactersController {
   @Post(':id/planet')
   addPlanet(@Param() characterIdDto: IdDto, @Body() planetIdDto: IdDto) {
     return this.charactersService.addPlanet(characterIdDto.id, planetIdDto.id);
-  }
-
-  @HttpCode(HttpStatus.NO_CONTENT)
-  @ApiNoContentResponse()
-  @ApiNotFoundResponse()
-  @Delete(':id/episodes/:id2')
-  deleteEpisode(@Param() idDto: IdDto2) {
-    return this.charactersService.deleteEpisode(idDto.id, idDto.id2);
   }
 
   @HttpCode(HttpStatus.NO_CONTENT)

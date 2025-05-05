@@ -12,7 +12,7 @@ import { transaction } from '../../utils/transaction';
 @Injectable()
 export class EpisodesService {
   constructor(
-    @InjectConnection(EpisodesRepository.name)
+    @InjectConnection()
     private readonly connection: Connection,
     private readonly episodesRepository: EpisodesRepository,
     private readonly charactersRepository: CharactersRepository,

@@ -13,7 +13,7 @@ import { transaction } from '../../utils/transaction';
 @Injectable()
 export class CharactersService {
   constructor(
-    @InjectConnection(PlanetsRepository.name)
+    @InjectConnection()
     private readonly connection: Connection,
     private readonly charactersRepository: CharactersRepository,
     private readonly episodesRepository: EpisodesRepository,

@@ -10,9 +10,9 @@ import { RepositoryAbstract } from './repository.abstract';
 @Injectable()
 export class EpisodesRepository extends RepositoryAbstract<Episode, EpisodeDocument> {
   constructor(
-    @InjectModel(Episode.name, EpisodesRepository.name)
+    @InjectModel(Episode.name)
     protected readonly modelAbstract: Model<EpisodeDocument>,
-    @InjectModel(Character.name, EpisodesRepository.name)
+    @InjectModel(Character.name)
     private readonly characterModel: Model<CharacterDocument>,
   ) {
     super();

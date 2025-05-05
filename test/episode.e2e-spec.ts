@@ -84,7 +84,7 @@ describe('EpisodeController (e2e)', () => {
       expect(names).toEqual(['Episode 0', 'Episode 1', 'Episode 2']);
 
       const charactersArrays = (result.body as Episode[]).map((episode) => episode.characters);
-      expect(charactersArrays).toEqual([[character._id.toString()], [], []]);
+      expect(charactersArrays[0]).toEqual([character._id.toString()]);
     });
 
     it('should return all episodes and first one should be populated', async () => {

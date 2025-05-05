@@ -28,10 +28,8 @@ export class CharactersService {
     return this.charactersRepository.save(saveCharacterDto);
   }
 
-  async updateOne(characterId: string, updateOneCharacterDto: UpdateOneCharacterDto) {
-    await this.charactersRepository.updateOne(characterId, updateOneCharacterDto);
-
-    return this.charactersRepository.findById(characterId);
+  updateOne(characterId: string, updateOneCharacterDto: UpdateOneCharacterDto) {
+    return this.charactersRepository.updateOne(characterId, updateOneCharacterDto);
   }
 
   deleteOne(characterId: string) {

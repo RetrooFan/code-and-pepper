@@ -18,15 +18,17 @@ export abstract class RepositoryAbstract<TSchema, TDocument> {
     return this.modelAbstract.findById<TSchema>(_id);
   }
 
-  save(saveDto: SaveDto, session?: ClientSession) {
-    return new this.modelAbstract(saveDto).save({ session });
+  async save(saveDto: SaveDto, session?: ClientSession) {
+    return (await new this.modelAbstract(saveDto).save({ session })) as TSchema;
   }
 
-  updateOne(_id: string, saveDto: SaveDto, session?: ClientSession) {
-    return this.modelAbstract.updateOne({ _id }, saveDto, { session });
+  async updateOne(_id: string, saveDto: SaveDto, session?: ClientSession) {
+    await this.modelAbstract.updateOne({ _id }, saveDto, { session });
+
+    return this.findById(_id);
   }
 
   async deleteOne(_id: string, session?: ClientSession) {
-    return this.modelAbstract.deleteOne({ _id }, { session });
+    return (await this.modelAbstract.deleteOne({ _id }, { session })) as TSchema;
   }
 }

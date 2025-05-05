@@ -144,4 +144,38 @@ describe('EpisodeController (e2e)', () => {
       await api.put('/episodes/123456789012345678911234').send({ name: 'Episode 1' }).expect(HttpStatus.NOT_FOUND);
     });
   });
+
+  describe('/episodes/:id (DELETE)', () => {
+    it('should delete an episode', async () => {
+      const episode = await episodesService.save({ name: 'Episode 0' });
+
+      await api.delete(`/episodes/${episode._id.toString()}`).expect(HttpStatus.NO_CONTENT);
+
+      const episodes = await episodesService.find(new PaginationQueryDto());
+      const names = episodes.map((episode) => episode.name);
+      expect(names).toEqual([]);
+    });
+
+    it('should return 404 for non existing episode', async () => {
+      await episodesService.save({ name: 'Episode 0' });
+
+      await api.delete('/episodes/123456789012345678911234').expect(HttpStatus.NOT_FOUND);
+
+      const episodes = await episodesService.find(new PaginationQueryDto());
+      const names = episodes.map((episode) => episode.name);
+      expect(names).toEqual(['Episode 0']);
+    });
+
+    it('should return 409 when there are characters assigned', async () => {
+      const episode = await episodesService.save({ name: 'Episode 0' });
+      const character = await charactersService.save({ name: 'Character 0' });
+      await episodesService.addCharacter(episode._id.toString(), character._id.toString());
+
+      await api.delete(`/episodes/${episode._id.toString()}`).expect(HttpStatus.CONFLICT);
+
+      const episodes = await episodesService.find(new PaginationQueryDto());
+      const names = episodes.map((episode) => episode.name);
+      expect(names).toEqual(['Episode 0']);
+    });
+  });
 });

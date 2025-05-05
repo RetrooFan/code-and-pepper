@@ -178,4 +178,22 @@ describe('EpisodeController (e2e)', () => {
       expect(names).toEqual(['Episode 0']);
     });
   });
+
+  describe('/episodes/:id/characters (POST)', () => {
+    it('should add a character to the episode', async () => {
+      const episode = await episodesService.save({ name: 'Episode 0' });
+      const character = await charactersService.save({ name: 'Character 0' });
+
+      await api
+        .post(`/episodes/${episode._id.toString()}/characters`)
+        .send({ id: character._id.toString() })
+        .expect(HttpStatus.CREATED);
+
+      const episodes = await episodesService.find(new PaginationQueryDto());
+      const names = episodes.map((episode) => episode.name);
+
+      expect(names).toEqual(['Episode 0']);
+      expect(episodes[0].characters[0]._id.toString()).toEqual(character._id.toString());
+    });
+  });
 });

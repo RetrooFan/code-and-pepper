@@ -34,6 +34,7 @@ export class EpisodesController {
 
   @ApiOkResponse()
   @ApiBadRequestResponse()
+  @ApiNotFoundResponse()
   @Put(':id')
   updateOne(@Param() idDto: IdDto, @Body() updateOneEpisodeDto: UpdateOneEpisodeDto) {
     return this.episodesService.updateOne(idDto.id, updateOneEpisodeDto);

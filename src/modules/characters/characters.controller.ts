@@ -34,6 +34,7 @@ export class CharactersController {
 
   @ApiOkResponse()
   @ApiBadRequestResponse()
+  @ApiNotFoundResponse()
   @Put(':id')
   updateOne(@Param() idDto: IdDto, @Body() updateOneCharacterDto: UpdateOneCharacterDto) {
     return this.charactersService.updateOne(idDto.id, updateOneCharacterDto);

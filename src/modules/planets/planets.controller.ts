@@ -34,6 +34,7 @@ export class PlanetsController {
 
   @ApiOkResponse()
   @ApiBadRequestResponse()
+  @ApiNotFoundResponse()
   @Put(':id')
   updateOne(@Param() idDto: IdDto, @Body() updateOnePlanetDto: UpdateOnePlanetDto) {
     return this.planetsService.updateOne(idDto.id, updateOnePlanetDto);

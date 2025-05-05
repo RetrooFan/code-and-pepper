@@ -118,4 +118,30 @@ describe('EpisodeController (e2e)', () => {
       expect(names).toEqual([]);
     });
   });
+
+  describe('/episodes/:id (PUT)', () => {
+    it('should update an episode with a given name', async () => {
+      const episode = await episodesService.save({ name: 'Episode 0' });
+
+      await api.put(`/episodes/${episode._id.toString()}`).send({ name: 'Episode 1' }).expect(HttpStatus.OK);
+
+      const episodes = await episodesService.find(new PaginationQueryDto());
+      const names = episodes.map((episode) => episode.name);
+      expect(names).toEqual(['Episode 1']);
+    });
+
+    it('should return 400 for bad body', async () => {
+      const episode = await episodesService.save({ name: 'Episode 0' });
+
+      await api.put(`/episodes/${episode._id.toString()}`).expect(HttpStatus.BAD_REQUEST);
+
+      const episodes = await episodesService.find(new PaginationQueryDto());
+      const names = episodes.map((episode) => episode.name);
+      expect(names).toEqual(['Episode 0']);
+    });
+
+    it('should return 404 for non existing episode', async () => {
+      await api.put('/episodes/123456789012345678911234').send({ name: 'Episode 1' }).expect(HttpStatus.NOT_FOUND);
+    });
+  });
 });

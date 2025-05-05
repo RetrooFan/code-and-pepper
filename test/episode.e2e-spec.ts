@@ -9,6 +9,7 @@ import { EpisodesService } from '../src/modules/episodes/episodes.service';
 import { PaginationQueryDto } from '../src/dtos/pagination.query.dto';
 import { Episode } from '../src/entities/episode.entity';
 import { CharactersService } from '../src/modules/characters/characters.service';
+import { SaveEpisodeDto } from '../src/dtos/saveEpisode.dto';
 
 describe('EpisodeController (e2e)', () => {
   let api: TestAgent;
@@ -97,6 +98,24 @@ describe('EpisodeController (e2e)', () => {
 
       const charactersArrays = (result.body as Episode[]).map((episode) => episode.characters);
       expect(charactersArrays[0][0]._id).toEqual(character._id.toString());
+    });
+  });
+
+  describe('/episodes (POST)', () => {
+    it('should create new episode with a given name', async () => {
+      await api.post('/episodes').send({ name: 'Episode 0' }).expect(HttpStatus.CREATED);
+
+      const episodes = await episodesService.find(new PaginationQueryDto());
+      const names = episodes.map((episode) => episode.name);
+      expect(names).toEqual(['Episode 0']);
+    });
+
+    it('should return 400 for bad body', async () => {
+      await api.post('/episodes').expect(HttpStatus.BAD_REQUEST);
+
+      const episodes = await episodesService.find(new PaginationQueryDto());
+      const names = episodes.map((episode) => episode.name);
+      expect(names).toEqual([]);
     });
   });
 });

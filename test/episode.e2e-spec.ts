@@ -56,22 +56,22 @@ describe('EpisodeController (e2e)', () => {
     it('should return all episodes', async () => {
       const result = await api.get('/episodes').expect(HttpStatus.OK);
 
-      const names = (result.body as Episode[]).map((episode) => episode.name);
-      expect(names).toEqual(['Episode 0', 'Episode 1', 'Episode 2']);
+      const episodesNames = (result.body as Episode[]).map((episode) => episode.name);
+      expect(episodesNames).toEqual(['Episode 0', 'Episode 1', 'Episode 2']);
     });
 
     it('should omit first episode', async () => {
       const result = await api.get('/episodes').query({ offset: 1 }).expect(HttpStatus.OK);
 
-      const names = (result.body as Episode[]).map((episode) => episode.name);
-      expect(names).toEqual(['Episode 1', 'Episode 2']);
+      const episodesNames = (result.body as Episode[]).map((episode) => episode.name);
+      expect(episodesNames).toEqual(['Episode 1', 'Episode 2']);
     });
 
     it('should return two episodes from the beggining', async () => {
       const result = await api.get('/episodes').query({ limit: 2 }).expect(HttpStatus.OK);
 
-      const names = (result.body as Episode[]).map((episode) => episode.name);
-      expect(names).toEqual(['Episode 0', 'Episode 1']);
+      const episodesNames = (result.body as Episode[]).map((episode) => episode.name);
+      expect(episodesNames).toEqual(['Episode 0', 'Episode 1']);
     });
 
     it('should return all episodes and first one should contain character id', async () => {
@@ -80,8 +80,8 @@ describe('EpisodeController (e2e)', () => {
 
       const result = await api.get('/episodes').expect(HttpStatus.OK);
 
-      const names = (result.body as Episode[]).map((episode) => episode.name);
-      expect(names).toEqual(['Episode 0', 'Episode 1', 'Episode 2']);
+      const episodesNames = (result.body as Episode[]).map((episode) => episode.name);
+      expect(episodesNames).toEqual(['Episode 0', 'Episode 1', 'Episode 2']);
 
       const charactersArrays = (result.body as Episode[]).map((episode) => episode.characters);
       expect(charactersArrays[0]).toEqual([character._id.toString()]);
@@ -93,8 +93,8 @@ describe('EpisodeController (e2e)', () => {
 
       const result = await api.get('/episodes').query({ populate: 1 }).expect(HttpStatus.OK);
 
-      const names = (result.body as Episode[]).map((episode) => episode.name);
-      expect(names).toEqual(['Episode 0', 'Episode 1', 'Episode 2']);
+      const episodesNames = (result.body as Episode[]).map((episode) => episode.name);
+      expect(episodesNames).toEqual(['Episode 0', 'Episode 1', 'Episode 2']);
 
       const charactersArrays = (result.body as Episode[]).map((episode) => episode.characters);
       expect(charactersArrays[0][0]._id).toEqual(character._id.toString());
@@ -106,16 +106,16 @@ describe('EpisodeController (e2e)', () => {
       await api.post('/episodes').send({ name: 'Episode 0' }).expect(HttpStatus.CREATED);
 
       const episodes = await episodesService.find(new PaginationQueryDto());
-      const names = episodes.map((episode) => episode.name);
-      expect(names).toEqual(['Episode 0']);
+      const episodesNames = episodes.map((episode) => episode.name);
+      expect(episodesNames).toEqual(['Episode 0']);
     });
 
     it('should return 400 for bad body', async () => {
       await api.post('/episodes').expect(HttpStatus.BAD_REQUEST);
 
       const episodes = await episodesService.find(new PaginationQueryDto());
-      const names = episodes.map((episode) => episode.name);
-      expect(names).toEqual([]);
+      const episodesNames = episodes.map((episode) => episode.name);
+      expect(episodesNames).toEqual([]);
     });
   });
 
@@ -126,8 +126,8 @@ describe('EpisodeController (e2e)', () => {
       await api.put(`/episodes/${episode._id.toString()}`).send({ name: 'Episode 1' }).expect(HttpStatus.OK);
 
       const episodes = await episodesService.find(new PaginationQueryDto());
-      const names = episodes.map((episode) => episode.name);
-      expect(names).toEqual(['Episode 1']);
+      const episodesNames = episodes.map((episode) => episode.name);
+      expect(episodesNames).toEqual(['Episode 1']);
     });
 
     it('should return 400 for bad body', async () => {
@@ -136,8 +136,8 @@ describe('EpisodeController (e2e)', () => {
       await api.put(`/episodes/${episode._id.toString()}`).expect(HttpStatus.BAD_REQUEST);
 
       const episodes = await episodesService.find(new PaginationQueryDto());
-      const names = episodes.map((episode) => episode.name);
-      expect(names).toEqual(['Episode 0']);
+      const episodesNames = episodes.map((episode) => episode.name);
+      expect(episodesNames).toEqual(['Episode 0']);
     });
 
     it('should return 404 for non existing episode', async () => {
@@ -152,8 +152,8 @@ describe('EpisodeController (e2e)', () => {
       await api.delete(`/episodes/${episode._id.toString()}`).expect(HttpStatus.NO_CONTENT);
 
       const episodes = await episodesService.find(new PaginationQueryDto());
-      const names = episodes.map((episode) => episode.name);
-      expect(names).toEqual([]);
+      const episodesNames = episodes.map((episode) => episode.name);
+      expect(episodesNames).toEqual([]);
     });
 
     it('should return 404 for non existing episode', async () => {
@@ -162,8 +162,8 @@ describe('EpisodeController (e2e)', () => {
       await api.delete('/episodes/123456789012345678911234').expect(HttpStatus.NOT_FOUND);
 
       const episodes = await episodesService.find(new PaginationQueryDto());
-      const names = episodes.map((episode) => episode.name);
-      expect(names).toEqual(['Episode 0']);
+      const episodesNames = episodes.map((episode) => episode.name);
+      expect(episodesNames).toEqual(['Episode 0']);
     });
 
     it('should return 409 when there are characters assigned', async () => {
@@ -174,8 +174,8 @@ describe('EpisodeController (e2e)', () => {
       await api.delete(`/episodes/${episode._id.toString()}`).expect(HttpStatus.CONFLICT);
 
       const episodes = await episodesService.find(new PaginationQueryDto());
-      const names = episodes.map((episode) => episode.name);
-      expect(names).toEqual(['Episode 0']);
+      const episodesNames = episodes.map((episode) => episode.name);
+      expect(episodesNames).toEqual(['Episode 0']);
     });
   });
 

@@ -1,7 +1,7 @@
 # code-and-pepper
 
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://codeandpepper.com/wp-content/uploads/2019/06/logo.png" width="120" alt="Nest Logo" /></a>
+  <a href="https://codeandpepper.com/" target="blank"><img src="https://codeandpepper.com/wp-content/uploads/2019/06/logo.png" width="120" alt="Nest Logo" /></a>
 </p>
 
 <p align="center">
@@ -35,6 +35,6 @@ $ npm run start:prod
 $ ./RUNME-test.sh
 ```
 
-## Swagger
+## Documentation
 
-<a href="localhost:3000/api" target="blank">localhost:3000/api</a>
+[Swagger](http://localhost:3000/api)

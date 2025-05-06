@@ -10,7 +10,7 @@ import { PaginationQueryDto } from '../src/dtos/pagination.query.dto';
 import { Episode } from '../src/entities/episode.entity';
 import { CharactersService } from '../src/modules/characters/characters.service';
 
-describe('EpisodeController (e2e)', () => {
+describe('EpisodesController (e2e)', () => {
   let api: TestAgent;
   let episodesService: EpisodesService;
   let charactersService: CharactersService;

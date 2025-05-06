@@ -206,5 +206,48 @@ describe('EpisodeController (e2e)', () => {
       expect(episodesNames).toEqual(['Episode 0']);
       expect(charactersNames).toEqual([character._id.toString()]);
     });
+
+    it('should return 404 for non existing episode', async () => {
+      const character = await charactersService.save({ name: 'Character 0' });
+
+      await api
+        .post(`/episodes/123456789012345678911234/characters`)
+        .send({ id: character._id.toString() })
+        .expect(HttpStatus.NOT_FOUND);
+    });
+
+    it('should return 404 for non existing character', async () => {
+      const episode = await episodesService.save({ name: 'Episode 0' });
+
+      await api
+        .post(`/episodes/${episode._id.toString()}/characters`)
+        .send({ id: '123456789012345678911234' })
+        .expect(HttpStatus.NOT_FOUND);
+
+      const episodes = await episodesService.find(new PaginationQueryDto());
+      const episodesNames = episodes.map((episode) => episode.name);
+      const charactersNames = episodes[0].characters.map((character) => character._id.toString());
+
+      expect(episodesNames).toEqual(['Episode 0']);
+      expect(charactersNames).toEqual([undefined]);
+    });
+
+    it('should return 409 when the characters is already assigned', async () => {
+      const episode = await episodesService.save({ name: 'Episode 0' });
+      const character = await charactersService.save({ name: 'Character 0' });
+      await episodesService.addCharacter(episode._id.toString(), character._id.toString());
+
+      await api
+        .post(`/episodes/${episode._id.toString()}/characters`)
+        .send({ id: character._id.toString() })
+        .expect(HttpStatus.CONFLICT);
+
+      const episodes = await episodesService.find(new PaginationQueryDto());
+      const episodesNames = episodes.map((episode) => episode.name);
+      const charactersNames = episodes[0].characters.map((character) => character._id.toString());
+
+      expect(episodesNames).toEqual(['Episode 0']);
+      expect(charactersNames).toEqual([character._id.toString()]);
+    });
   });
 });

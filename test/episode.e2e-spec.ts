@@ -57,6 +57,7 @@ describe('EpisodeController (e2e)', () => {
       const result = await api.get('/episodes').expect(HttpStatus.OK);
 
       const episodesNames = (result.body as Episode[]).map((episode) => episode.name);
+
       expect(episodesNames).toEqual(['Episode 0', 'Episode 1', 'Episode 2']);
     });
 
@@ -64,6 +65,7 @@ describe('EpisodeController (e2e)', () => {
       const result = await api.get('/episodes').query({ offset: 1 }).expect(HttpStatus.OK);
 
       const episodesNames = (result.body as Episode[]).map((episode) => episode.name);
+
       expect(episodesNames).toEqual(['Episode 1', 'Episode 2']);
     });
 
@@ -71,6 +73,7 @@ describe('EpisodeController (e2e)', () => {
       const result = await api.get('/episodes').query({ limit: 2 }).expect(HttpStatus.OK);
 
       const episodesNames = (result.body as Episode[]).map((episode) => episode.name);
+
       expect(episodesNames).toEqual(['Episode 0', 'Episode 1']);
     });
 
@@ -81,9 +84,9 @@ describe('EpisodeController (e2e)', () => {
       const result = await api.get('/episodes').expect(HttpStatus.OK);
 
       const episodesNames = (result.body as Episode[]).map((episode) => episode.name);
-      expect(episodesNames).toEqual(['Episode 0', 'Episode 1', 'Episode 2']);
-
       const charactersArrays = (result.body as Episode[]).map((episode) => episode.characters);
+
+      expect(episodesNames).toEqual(['Episode 0', 'Episode 1', 'Episode 2']);
       expect(charactersArrays[0]).toEqual([character._id.toString()]);
     });
 
@@ -94,9 +97,9 @@ describe('EpisodeController (e2e)', () => {
       const result = await api.get('/episodes').query({ populate: 1 }).expect(HttpStatus.OK);
 
       const episodesNames = (result.body as Episode[]).map((episode) => episode.name);
-      expect(episodesNames).toEqual(['Episode 0', 'Episode 1', 'Episode 2']);
-
       const charactersArrays = (result.body as Episode[]).map((episode) => episode.characters);
+
+      expect(episodesNames).toEqual(['Episode 0', 'Episode 1', 'Episode 2']);
       expect(charactersArrays[0][0]._id).toEqual(character._id.toString());
     });
   });
@@ -107,6 +110,7 @@ describe('EpisodeController (e2e)', () => {
 
       const episodes = await episodesService.find(new PaginationQueryDto());
       const episodesNames = episodes.map((episode) => episode.name);
+
       expect(episodesNames).toEqual(['Episode 0']);
     });
 
@@ -115,6 +119,7 @@ describe('EpisodeController (e2e)', () => {
 
       const episodes = await episodesService.find(new PaginationQueryDto());
       const episodesNames = episodes.map((episode) => episode.name);
+
       expect(episodesNames).toEqual([]);
     });
   });
@@ -127,6 +132,7 @@ describe('EpisodeController (e2e)', () => {
 
       const episodes = await episodesService.find(new PaginationQueryDto());
       const episodesNames = episodes.map((episode) => episode.name);
+
       expect(episodesNames).toEqual(['Episode 1']);
     });
 
@@ -137,6 +143,7 @@ describe('EpisodeController (e2e)', () => {
 
       const episodes = await episodesService.find(new PaginationQueryDto());
       const episodesNames = episodes.map((episode) => episode.name);
+
       expect(episodesNames).toEqual(['Episode 0']);
     });
 
@@ -153,6 +160,7 @@ describe('EpisodeController (e2e)', () => {
 
       const episodes = await episodesService.find(new PaginationQueryDto());
       const episodesNames = episodes.map((episode) => episode.name);
+
       expect(episodesNames).toEqual([]);
     });
 
@@ -163,6 +171,7 @@ describe('EpisodeController (e2e)', () => {
 
       const episodes = await episodesService.find(new PaginationQueryDto());
       const episodesNames = episodes.map((episode) => episode.name);
+
       expect(episodesNames).toEqual(['Episode 0']);
     });
 
@@ -175,6 +184,7 @@ describe('EpisodeController (e2e)', () => {
 
       const episodes = await episodesService.find(new PaginationQueryDto());
       const episodesNames = episodes.map((episode) => episode.name);
+
       expect(episodesNames).toEqual(['Episode 0']);
     });
   });
@@ -191,9 +201,9 @@ describe('EpisodeController (e2e)', () => {
 
       const episodes = await episodesService.find(new PaginationQueryDto());
       const episodesNames = episodes.map((episode) => episode.name);
-      expect(episodesNames).toEqual(['Episode 0']);
-
       const charactersNames = episodes[0].characters.map((character) => character._id.toString());
+
+      expect(episodesNames).toEqual(['Episode 0']);
       expect(charactersNames).toEqual([character._id.toString()]);
     });
   });

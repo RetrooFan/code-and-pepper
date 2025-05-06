@@ -190,8 +190,8 @@ describe('EpisodeController (e2e)', () => {
         .expect(HttpStatus.CREATED);
 
       const episodes = await episodesService.find(new PaginationQueryDto());
-      const names = episodes.map((episode) => episode.name);
-      expect(names).toEqual(['Episode 0']);
+      const episodesNames = episodes.map((episode) => episode.name);
+      expect(episodesNames).toEqual(['Episode 0']);
 
       const charactersNames = episodes[0].characters.map((character) => character._id.toString());
       expect(charactersNames).toEqual([character._id.toString()]);

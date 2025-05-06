@@ -191,9 +191,10 @@ describe('EpisodeController (e2e)', () => {
 
       const episodes = await episodesService.find(new PaginationQueryDto());
       const names = episodes.map((episode) => episode.name);
-
       expect(names).toEqual(['Episode 0']);
-      expect(episodes[0].characters[0]._id.toString()).toEqual(character._id.toString());
+
+      const charactersNames = episodes[0].characters.map((character) => character._id.toString());
+      expect(charactersNames).toEqual([character._id.toString()]);
     });
   });
 });

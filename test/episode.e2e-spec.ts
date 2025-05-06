@@ -201,10 +201,10 @@ describe('EpisodeController (e2e)', () => {
 
       const episodes = await episodesService.find(new PaginationQueryDto());
       const episodesNames = episodes.map((episode) => episode.name);
-      const charactersNames = episodes[0].characters.map((character) => character._id.toString());
+      const charactersIds = episodes[0].characters.map((character) => character._id.toString());
 
       expect(episodesNames).toEqual(['Episode 0']);
-      expect(charactersNames).toEqual([character._id.toString()]);
+      expect(charactersIds).toEqual([character._id.toString()]);
     });
 
     it('should return 404 for non existing episode', async () => {
@@ -226,10 +226,10 @@ describe('EpisodeController (e2e)', () => {
 
       const episodes = await episodesService.find(new PaginationQueryDto());
       const episodesNames = episodes.map((episode) => episode.name);
-      const charactersNames = episodes[0].characters.map((character) => character._id.toString());
+      const charactersIds = episodes[0].characters.map((character) => character._id.toString());
 
       expect(episodesNames).toEqual(['Episode 0']);
-      expect(charactersNames).toEqual([undefined]);
+      expect(charactersIds).toEqual([undefined]);
     });
 
     it('should return 409 when the characters is already assigned', async () => {
@@ -244,10 +244,10 @@ describe('EpisodeController (e2e)', () => {
 
       const episodes = await episodesService.find(new PaginationQueryDto());
       const episodesNames = episodes.map((episode) => episode.name);
-      const charactersNames = episodes[0].characters.map((character) => character._id.toString());
+      const charactersIds = episodes[0].characters.map((character) => character._id.toString());
 
       expect(episodesNames).toEqual(['Episode 0']);
-      expect(charactersNames).toEqual([character._id.toString()]);
+      expect(charactersIds).toEqual([character._id.toString()]);
     });
   });
 });

@@ -7,7 +7,7 @@ import TestAgent from 'supertest/lib/agent';
 import { AppModule } from '../src/app.module';
 import { Planet } from '../src/entities/planet.entity';
 
-describe('AppController (e2e)', () => {
+describe('PlanetsController (e2e)', () => {
   let api: TestAgent;
 
   beforeAll(async () => {

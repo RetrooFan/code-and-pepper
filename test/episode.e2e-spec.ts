@@ -9,7 +9,6 @@ import { EpisodesService } from '../src/modules/episodes/episodes.service';
 import { PaginationQueryDto } from '../src/dtos/pagination.query.dto';
 import { Episode } from '../src/entities/episode.entity';
 import { CharactersService } from '../src/modules/characters/characters.service';
-import { SaveEpisodeDto } from '../src/dtos/saveEpisode.dto';
 
 describe('EpisodeController (e2e)', () => {
   let api: TestAgent;

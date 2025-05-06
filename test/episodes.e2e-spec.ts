@@ -30,15 +30,19 @@ describe('EpisodesController (e2e)', () => {
   afterEach(async () => {
     const episodes = await episodesService.find(new PaginationQueryDto());
 
-    const charactersPromises = episodes.flatMap((episode) =>
+    const episodesCharactersPromises = episodes.flatMap((episode) =>
       episode.characters.map((character) =>
         episodesService.deleteCharacter(episode._id.toString(), character._id.toString()),
       ),
     );
-    await Promise.all(charactersPromises);
+    await Promise.all(episodesCharactersPromises);
 
     const episodesPromises = episodes.map((episode) => episodesService.deleteOne(episode._id.toString()));
     await Promise.all(episodesPromises);
+
+    const characters = await charactersService.find(new PaginationQueryDto());
+    const charactersPromises = characters.map((character) => charactersService.deleteOne(character._id.toString()));
+    await Promise.all(charactersPromises);
   });
 
   describe('/episodes (GET)', () => {
